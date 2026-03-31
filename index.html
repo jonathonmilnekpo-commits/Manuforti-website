@@ -107,73 +107,39 @@
 
         /* Hero */
         .hero {
-            background: linear-gradient(135deg, #0a0e27 0%, #0f1940 40%, #0a1628 100%);
-            min-height: 100vh;
+            padding-top: 72px; /* offset for fixed header */
+            background: #0a0e27;
+        }
+
+        .hero-image-wrap {
+            width: 100%;
+            line-height: 0; /* remove inline gap */
+        }
+
+        .hero-image-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-cta-bar {
+            background: #0a0e27;
+            padding: 2.5rem 2rem;
             display: flex;
             align-items: center;
-            padding-top: 80px;
-            position: relative;
-            overflow: hidden;
+            justify-content: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-            pointer-events: none;
+        @media (max-width: 768px) {
+            .hero-cta-bar {
+                justify-content: center;
+                padding: 2rem 1rem;
+            }
         }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
 
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            width: 100%;
-        }
-
-        .hero-text {
-            max-width: 600px;
-        }
-
-        .hero-label {
-            font-size: 0.875rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--cyan);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            color: var(--white);
-            letter-spacing: -0.03em;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 2.5rem;
-            max-width: 500px;
-            line-height: 1.7;
-        }
 
         .cta-button {
             display: inline-block;
@@ -657,16 +623,12 @@
 
     <!-- Hero - Canva Design -->
     <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <div class="hero-label">MANU FORTI</div>
-                <h1>Get a grip on your Procurement</h1>
-                <p>Expert procurement intelligence combining cutting-edge analysis with 80+ years of procurement expertise. Professional evaluation reports delivered in 6-24 hours.</p>
-                <div class="hero-buttons">
-                    <a href="order.html" class="cta-button">Explore Solutions</a>
-                    <a href="#how-it-works" class="cta-button secondary">Learn More</a>
-                </div>
-            </div>
+        <div class="hero-image-wrap">
+            <img src="hero-v1.png" alt="Manu Forti Intelligence — Get a grip on your Procurement" />
+        </div>
+        <div class="hero-cta-bar">
+            <a href="order.html" class="cta-button">Explore Solutions</a>
+            <a href="#how-it-works" class="cta-button secondary">Learn More</a>
         </div>
     </section>
 
