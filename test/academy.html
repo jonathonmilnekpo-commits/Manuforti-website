@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procurement Leadership Academy — Manu Forti Intelligence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #002147;
+            --cobalt: #2B6CB0;
+            --white: #FFFFFF;
+            --gray: #718096;
+            --light-gray: #F7FAFC;
+            --green: #48BB78;
+            --amber: #D69E2E;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: var(--navy);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--cobalt);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--cobalt);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, #1a365d 100%);
+            color: var(--white);
+            padding: 10rem 0 6rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--cobalt);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--cobalt);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            background: #1e4e8c;
+            transform: translateY(-2px);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--white);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Value Prop */
+        .value-prop {
+            padding: 5rem 0;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .value-prop h2 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .value-prop p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--gray);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 8px;
+        }
+
+        .stat-card .number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--cobalt);
+        }
+
+        .stat-card .label {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* Curriculum */
+        .curriculum {
+            padding: 5rem 0;
+            background: var(--light-gray);
+        }
+
+        .curriculum h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .curriculum-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .pillar-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--cobalt);
+        }
+
+        .pillar-card h3 {
+            color: var(--navy);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .pillar-card .weeks {
+            color: var(--cobalt);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .pillar-card ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar-card li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--gray);
+        }
+
+        .pillar-card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--cobalt);
+        }
+
+        .pillar-card .deliverable {
+            background: rgba(43, 108, 176, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: var(--navy);
+        }
+
+        .pillar-card .deliverable strong {
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Formats */
+        .formats {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .formats h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 3rem;
+        }
+
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .format-card {
+            background: var(--light-gray);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .format-card:hover {
+            border-color: var(--cobalt);
+        }
+
+        .format-card.featured {
+            background: var(--navy);
+            color: var(--white);
+            transform: scale(1.02);
+        }
+
+        .format-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .format-card .target {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .format-card.featured .target {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .format-card .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--cobalt);
+            margin-bottom: 1.5rem;
+        }
+
+        .format-card.featured .price {
+            color: var(--white);
+        }
+
+        .format-card ul {
+            list-style: none;
+        }
+
+        .format-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .format-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        .format-card.featured li::before {
+            color: var(--green);
+        }
+
+        /* Who Should Attend */
+        .audience {
+            padding: 5rem 0;
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .audience h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .audience-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .audience-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .audience-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .audience-card p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        /* Differentiation */
+        .differentiation {
+            padding: 5rem 0;
+            background: var(--light-gray);
+        }
+
+        .differentiation h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 3rem;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .diff-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .diff-card h4 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .diff-card p {
+            color: var(--gray);
+        }
+
+        /* Pilot */
+        .pilot {
+            padding: 5rem 0;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .pilot h2 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .pilot p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--gray);
+        }
+
+        .pilot-badge {
+            display: inline-block;
+            background: var(--amber);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .pilot-details {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            text-align: left;
+        }
+
+        .pilot-details h4 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .pilot-details ul {
+            list-style: none;
+        }
+
+        .pilot-details li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .pilot-details li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        /* Application Form */
+        .application {
+            padding: 5rem 0;
+            background: var(--light-gray);
+        }
+
+        .application h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .application-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 3rem;
+        }
+
+        .application-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--navy);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--cobalt);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            background: var(--cobalt);
+            color: var(--white);
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background: #1e4e8c;
+        }
+
+        /* Footer */
+        footer {
+            background: #001a38;
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer .footer-links {
+            margin-bottom: 1.5rem;
+        }
+
+        footer .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 1rem;
+            opacity: 0.8;
+        }
+
+        footer .footer-links a:hover {
+            opacity: 1;
+        }
+
+        footer p {
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .format-card.featured {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Manu Forti <span>Intelligence</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Product 1</a></li>
+                <li><a href="academy.html">Academy</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="#apply">Apply Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Transform Your Procurement Team into AI-Native Operators</h1>
+            <p class="subtitle">The World's First Academy for Agentifying Procurement</p>
+            <p>Learn to architect, implement, and scale intelligent agent systems within your procurement organization. Not just AI tools — agent workflows that transform how you work.</p>
+            <a href="#apply" class="cta-button">Apply for Pilot Cohort</a>
+            <a href="#curriculum" class="cta-button secondary">View Curriculum</a>
+        </div>
+    </section>
+
+    <!-- Value Prop -->
+    <section class="value-prop">
+        <div class="container">
+            <h2>Why Procurement Leaders Choose Our Academy</h2>
+            <p>Generic AI training teaches you to use ChatGPT. We teach you to build autonomous procurement agents that work 24/7, reduce cycle times by 60%, and free your team for strategic work.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">60%</div>
+                    <div class="label">Average Cycle Time Reduction</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">4x</div>
+                    <div class="label">Supplier Coverage per FTE</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">80%</div>
+                    <div class="label">Report Implementing AI Post-Training</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum -->
+    <section class="curriculum" id="curriculum">
+        <div class="container">
+            <h2>4-Pillar Curriculum</h2>
+            <p class="curriculum-subtitle">8-week certification program designed by procurement practitioners who've actually implemented AI agents</p>
+            
+            <div class="pillars">
+                <div class="pillar-card">
+                    <h3>🎯 Pillar 1: AI Strategy</h3>
+                    <div class="weeks">Weeks 1–2</div>
+                    <ul>
+                        <li>AI landscape for procurement</li>
+                        <li>Organizational readiness assessment</li>
+                        <li>Building the business case</li>
+                        <li>Roadmap: crawl, walk, run</li>
+                        <li>Governance and risk management</li>
+                    </ul>
+                    <div class="deliverable">
+                        <strong>Deliverable:</strong> Personalized AI readiness assessment + 12-month implementation roadmap
+                    </div>
+                </div>
+
+                <div class="pillar-card">
+                    <h3>⚙️ Pillar 2: Agent Architecture</h3>
+                    <div class="weeks">Weeks 3–5</div>
+                    <ul>
+                        <li>Agent capabilities & limitations</li>
+                        <li>Procurement use case mapping</li>
+                        <li>Workflow design patterns</li>
+                        <li>Technical architecture (non-technical)</li>
+                        <li>Integration with ERP/procurement systems</li>
+                    </ul>
+                    <div class="deliverable">
+                        <strong>Deliverable:</strong> Designed agent workflow + functional prototype
+                    </div>
+                </div>
+
+                <div class="pillar-card">
+                    <h3>👥 Pillar 3: Change Management</h3>
+                    <div class="weeks">Weeks 6–7</div>
+                    <ul>
+                        <li>Redefining procurement roles</li>
+                        <li>Human-AI interface management</li>
+                        <li>Training & enablement programs</li>
+                        <li>Stakeholder management</li>
+                        <li>Measuring success: KPIs and ROI</li>
+                    </ul>
+                    <div class="deliverable">
+                        <strong>Deliverable:</strong> Change management plan + team upskilling framework
+                    </div>
+                </div>
+
+                <div class="pillar-card">
+                    <h3>🚀 Pillar 4: Advanced Applications</h3>
+                    <div class="weeks">Week 8</div>
+                    <ul>
+                        <li>Autonomous sourcing agents</li>
+                        <li>Predictive supplier risk monitoring</li>
+                        <li>Natural language contract analysis</li>
+                        <li>Real-time market intelligence</li>
+                        <li>Future trends and capabilities</li>
+                    </ul>
+                    <div class="deliverable">
+                        <strong>Deliverable:</strong> Advanced use case prioritization matrix
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formats -->
+    <section class="formats" id="formats">
+        <div class="container">
+            <h2>Choose Your Format</h2>
+            
+            <div class="format-grid">
+                <div class="format-card">
+                    <h3>Executive Workshop</h3>
+                    <div class="target">For CPOs & VPs</div>
+                    <div class="price">€8,000–12,000</div>
+                    <ul>
+                        <li>2-day intensive workshop</li>
+                        <li>Strategic focus & business case</li>
+                        <li>Board-ready presentation template</li>
+                        <li>6 months follow-up support</li>
+                    </ul>
+                </div>
+
+                <div class="format-card featured">
+                    <h3>Practitioner Certification</h3>
+                    <div class="target">For Directors & Managers ⭐ Most Popular</div>
+                    <div class="price">€2,000–3,500</div>
+                    <ul>
+                        <li>8-week online program</li>
+                        <li>All 4 pillars + capstone project</li>
+                        <li>Weekly live sessions</li>
+                        <li>Peer cohort & networking</li>
+                        <li>Official certification</li>
+                    </ul>
+                </div>
+
+                <div class="format-card">
+                    <h3>Technical Deep-Dive</h3>
+                    <div class="target">For IT + Procurement Hybrids</div>
+                    <div class="price">€4,000–6,000</div>
+                    <ul>
+                        <li>3-day hands-on workshop</li>
+                        <li>API integration & architecture</li>
+                        <li>Building working prototypes</li>
+                        <li>Security & compliance deep-dive</li>
+                    </ul>
+                </div>
+
+                <div class="format-card">
+                    <h3>Enterprise Custom</h3>
+                    <div class="target">For Teams (10+ participants)</div>
+                    <div class="price">Custom Quote</div>
+                    <ul>
+                        <li>Tailored curriculum</li>
+                        <li>On-site or virtual delivery</li>
+                        <li>Company-specific use cases</li>
+                        <li>Train-the-trainer option</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audience -->
+    <section class="audience">
+        <div class="container">
+            <h2>Who Should Attend?</h2>
+            
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="icon">🎯</div>
+                    <h3>CPOs & VPs</h3>
+                    <p>Build the AI strategy, secure board approval, and lead transformation</p>
+                </div>
+                <div class="audience-card">
+                    <div class="icon">⚙️</div>
+                    <h3>Procurement Directors</h3>
+                    <p>Design agent workflows and implement in your categories</p>
+                </div>
+                <div class="audience-card">
+                    <div class="icon">👥</div>
+                    <h3>Category Managers</h3>
+                    <p>Become power users and train your teams</p>
+                </div>
+                <div class="audience-card">
+                    <div class="icon">💻</div>
+                    <h3>IT + Procurement</h3>
+                    <p>Bridge the gap between technical capability and business need</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiation -->
+    <section class="differentiation">
+        <div class="container">
+            <h2>What Makes Us Different</h2>
+            
+            <div class="diff-grid">
+                <div class="diff-card">
+                    <h4>🎓 First-Mover in Agent Training</h4>
+                    <p>No other academy focuses specifically on agentifying procurement. We go beyond "using AI tools" to "building AI agents."</p>
+                </div>
+                <div class="diff-card">
+                    <h4>⚒️ Built by Practitioners</h4>
+                    <p>Our curriculum comes from real implementations, not theory. Every module includes lessons from actual deployments.</p>
+                </div>
+                <div class="diff-card">
+                    <h4>🔌 Vendor-Neutral</h4>
+                    <p>We don't push specific platforms. Learn principles that apply whether you use OpenAI, Anthropic, or open-source models.</p>
+                </div>
+                <div class="diff-card">
+                    <h4>📊 Outcome-Focused</h4>
+                    <p>80% of graduates report implementing AI initiatives within 6 months. We measure success by your results, not completion.</p>
+                </div>
+                <div class="diff-card">
+                    <h4>🤝 Community & Support</h4>
+                    <p>Join a network of procurement leaders implementing AI. Monthly alumni calls, Slack community, and ongoing support.</p>
+                </div>
+                <div class="diff-card">
+                    <h4>📈 Continuous Evolution</h4>
+                    <p>AI moves fast. Our curriculum updates quarterly with new capabilities, tools, and best practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pilot -->
+    <section class="pilot">
+        <div class="container">
+            <span class="pilot-badge">🚀 Pilot Cohort — Q3 2026</span>
+            <h2>Be Among the First</h2>
+            <p>We're accepting 5–10 participants for our pilot cohort at a discounted rate. Help shape the curriculum and establish yourself as an AI procurement pioneer.</p>
+            
+            <div class="pilot-details">
+                <h4>Pilot Benefits:</h4>
+                <ul>
+                    <li>€5,000 pricing (vs €8,000–12,000 standard)</li>
+                    <li>Direct input on curriculum design</li>
+                    <li>1:1 sessions with Jonathon Milne, Founder</li>
+                    <li>Featured case study (with approval)</li>
+                    <li>Lifetime alumni network access</li>
+                    <li>Priority access to future programs</li>
+                </ul>
+            </div>
+            
+            <a href="#apply" class="cta-button">Apply for Pilot Cohort</a>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="application" id="apply">
+        <div class="container">
+            <h2>Apply Now</h2>
+            <p class="application-subtitle">Tell us about yourself and your AI procurement goals. We'll review applications within 48 hours.</p>
+            
+            <form class="application-form" action="mailto:Jonathon.Milne137@gmail.com" method="post" enctype="text/plain">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="company">Company *</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Job Title *</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="format">Preferred Format *</label>
+                    <select id="format" name="format" required>
+                        <option value="">Select a format...</option>
+                        <option value="pilot">Pilot Cohort — Practitioner Certification (€5,000)</option>
+                        <option value="executive">Executive Workshop</option>
+                        <option value="practitioner">Practitioner Certification (Standard)</option>
+                        <option value="technical">Technical Deep-Dive</option>
+                        <option value="enterprise">Enterprise Custom</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience">Current AI Experience</label>
+                    <select id="experience" name="experience">
+                        <option value="">Select...</option>
+                        <option value="none">No current AI use</option>
+                        <option value="exploring">Exploring/experimenting</option>
+                        <option value="piloting">Running pilots</option>
+                        <option value="scaling">Scaling across team</option>
+                        <option value="advanced">Advanced implementation</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="goals">What do you hope to achieve? *</label>
+                    <textarea id="goals" name="goals" placeholder="Tell us about your procurement AI goals, current challenges, and what success looks like for you..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="teamSize">Procurement Team Size</label>
+                    <select id="teamSize" name="teamSize">
+                        <option value="">Select...</option>
+                        <option value="1-5">1–5 people</option>
+                        <option value="6-20">6–20 people</option>
+                        <option value="21-50">21–50 people</option>
+                        <option value="50+">50+ people</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-button">Submit Application</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Product 1: Reports</a>
+                <a href="academy.html">Product 2: Academy</a>
+                <a href="mailto:Jonathon.Milne137@gmail.com">Contact</a>
+            </div>
+            <p>&copy; 2026 Manu Forti Intelligence. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

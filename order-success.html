@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success — Manu Forti Intelligence</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --navy: #002147;
+            --cobalt: #2B6CB0;
+            --steel: #4A5568;
+            --white: #FFFFFF;
+            --gray: #718096;
+            --light-gray: #F7FAFC;
+            --green: #48BB78;
+            --border: #E2E8F0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--light-gray);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .success-container {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 40px;
+        }
+        
+        h1 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+        
+        .order-ref {
+            background: var(--light-gray);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 1.25rem;
+            color: var(--navy);
+            margin: 1.5rem 0;
+            display: inline-block;
+        }
+        
+        .next-steps {
+            text-align: left;
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .next-steps h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+        
+        .next-steps ol {
+            padding-left: 1.5rem;
+            color: var(--steel);
+        }
+        
+        .next-steps li {
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--navy);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background: var(--cobalt);
+        }
+        
+        .status-check {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .status-check p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        .status-form {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        
+        .status-form input {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            width: 200px;
+        }
+        
+        .status-form button {
+            padding: 0.75rem 1.5rem;
+            background: var(--cobalt);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">✓</div>
+        
+        <h1>Payment Successful!</h1>
+        <p>Your order has been confirmed and we're starting the analysis.</p>
+        
+        <div class="order-ref" id="orderRef">MF-2026-XXXXX</div>
+        
+        <div class="next-steps">
+            <h3>What happens next?</h3>
+            <ol>
+                <li><strong>Analysis begins</strong> — Our AI pipeline starts researching your supplier immediately</li>
+                <li><strong>Expert review</strong> — A procurement expert validates the findings</li>
+                <li><strong>Report delivery</strong> — Your professional report arrives within the SLA timeframe</li>
+                <li><strong>Download</strong> — You'll receive an email with a secure download link</li>
+            </ol>
+        </div>
+        
+        <a href="index.html" class="btn">Return to Home</a>
+        
+        <div class="status-check">
+            <p>Check your order status anytime:</p>
+            <form class="status-form" onsubmit="checkStatus(event)">
+                <input type="text" id="statusInput" placeholder="Order reference" maxlength="20">
+                <button type="submit">Check Status</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get order reference from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderRef = urlParams.get('ref');
+        
+        if (orderRef) {
+            document.getElementById('orderRef').textContent = orderRef;
+            document.getElementById('statusInput').value = orderRef;
+            
+            // Clear stored order data
+            localStorage.removeItem('current_order');
+        }
+        
+        async function checkStatus(e) {
+            e.preventDefault();
+            const ref = document.getElementById('statusInput').value.trim();
+            
+            if (!ref) return;
+            
+            const API_BASE_URL = window.location.hostname === 'localhost' 
+                ? 'http://localhost:3000/api' 
+                : 'https://api.manuforti.com/api';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/orders/${ref}/status`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    alert(`Order Status: ${data.status}\nPayment: ${data.payment_status}\nDelivery by: ${new Date(data.sla_deadline).toLocaleString()}`);
+                } else {
+                    alert('Order not found. Please check your reference number.');
+                }
+            } catch (err) {
+                alert('Unable to check status. Please try again later.');
+            }
+        }
+    </script>
+</body>
+</html>

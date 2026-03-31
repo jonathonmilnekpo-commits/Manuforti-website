@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Report — Manu Forti Intelligence</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --navy: #002147; --cobalt: #2B6CB0; --steel: #4A5568; --white: #FFFFFF; --gray: #718096; --light-gray: #F7FAFC; --green: #48BB78; --amber: #ED8936; --red: #E53E3E; --border: #E2E8F0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; background: var(--light-gray); }
+        header { background: var(--navy); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--white); text-decoration: none; }
+        .logo span { color: var(--cobalt); }
+        .back-link { color: var(--white); text-decoration: none; font-weight: 500; }
+        .back-link:hover { color: var(--cobalt); }
+        main { padding-top: 6rem; padding-bottom: 4rem; }
+        .page-header { text-align: center; margin-bottom: 2rem; }
+        .page-header h1 { font-size: 2rem; color: var(--navy); margin-bottom: 0.5rem; }
+        .page-header p { color: var(--gray); }
+        .form-card { background: var(--white); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 2.5rem; margin-bottom: 2rem; }
+        .form-section { margin-bottom: 2rem; }
+        .section-title { font-size: 1.1rem; color: var(--navy); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-row .form-group { margin-bottom: 0; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--steel); }
+        label .required { color: var(--red); margin-left: 0.25rem; }
+        input, select, textarea { width: 100%; padding: 0.875rem 1rem; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; font-family: inherit; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--cobalt); box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1); }
+        textarea { resize: vertical; min-height: 100px; }
+        .help-text { font-size: 0.85rem; color: var(--gray); margin-top: 0.375rem; }
+        .pricing-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+        .pricing-option { border: 2px solid var(--border); border-radius: 10px; padding: 1.25rem; cursor: pointer; transition: all 0.2s; position: relative; }
+        .pricing-option:hover { border-color: var(--cobalt); }
+        .pricing-option.selected { border-color: var(--navy); background: rgba(0, 33, 71, 0.03); }
+        .pricing-option input { position: absolute; opacity: 0; }
+        .pricing-option .tier-name { font-weight: 600; color: var(--navy); margin-bottom: 0.25rem; }
+        .pricing-option .tier-price { font-size: 1.5rem; font-weight: 700; color: var(--cobalt); }
+        .pricing-option .tier-sla { font-size: 0.85rem; color: var(--gray); margin-top: 0.5rem; }
+        .pricing-option.featured { border-color: var(--amber); background: rgba(237, 137, 54, 0.05); }
+        .pricing-option.featured.selected { border-color: var(--amber); background: rgba(237, 137, 54, 0.1); }
+        .pricing-option.featured .tier-name { color: var(--amber); }
+        .category-strategy-details { background: rgba(0, 33, 71, 0.03); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-top: 1rem; }
+        .category-strategy-details h4 { color: var(--navy); margin-bottom: 1rem; }
+        .category-strategy-details ul { margin-left: 1.5rem; color: var(--steel); }
+        .payment-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .payment-option { border: 2px solid var(--border); border-radius: 10px; padding: 1.25rem; cursor: pointer; text-align: center; }
+        .payment-option:hover { border-color: var(--cobalt); }
+        .payment-option.selected { border-color: var(--navy); background: rgba(0, 33, 71, 0.03); }
+        .payment-option input { position: absolute; opacity: 0; }
+        .payment-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .payment-name { font-weight: 600; color: var(--navy); }
+        .payment-desc { font-size: 0.85rem; color: var(--gray); }
+        .file-upload { border: 2px dashed var(--border); border-radius: 8px; padding: 2rem; text-align: center; cursor: pointer; }
+        .file-upload:hover { border-color: var(--cobalt); }
+        .file-upload input { display: none; }
+        .submit-section { text-align: center; padding-top: 1rem; }
+        .submit-btn { background: var(--navy); color: var(--white); padding: 1rem 3rem; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; width: 100%; max-width: 400px; }
+        .submit-btn:hover { background: #001a38; }
+        .order-summary { background: var(--light-gray); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem; }
+        .summary-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+        .success-message { display: none; text-align: center; padding: 3rem 2rem; }
+        .success-message.show { display: block; }
+        @media (max-width: 768px) { .form-row, .pricing-options, .payment-options { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Manu Forti <span>Intelligence</span></a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h1>Request Supplier Analysis</h1>
+                <p>Complete the form below to order your professional supplier evaluation report.</p>
+            </div>
+
+            <form id="orderForm" class="form-card">
+                <!-- Product Type Selection -->
+                <div class="form-section">
+                    <h3 class="section-title">📊 Select Product</h3>
+                    <div class="pricing-options">
+                        <label class="pricing-option" onclick="selectProduct('report')">
+                            <input type="radio" name="product_type" value="report" required>
+                            <div class="tier-name">Supplier Report</div>
+                            <div class="tier-price">One-time</div>
+                            <div class="tier-sla">✓ 9-slide analysis</div>
+                        </label>
+                        <label class="pricing-option" onclick="selectProduct('monitoring')">
+                            <input type="radio" name="product_type" value="monitoring" required>
+                            <div class="tier-name">Media Monitoring</div>
+                            <div class="tier-price">Monthly</div>
+                            <div class="tier-sla">✓ Ongoing surveillance</div>
+                        </label>
+                        <label class="pricing-option featured" onclick="selectProduct('category_strategy')">
+                            <input type="radio" name="product_type" value="category_strategy" required>
+                            <div class="tier-name">Category Strategy</div>
+                            <div class="tier-price">€3,999</div>
+                            <div class="tier-sla">✓ Full strategy + Excel</div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Report Tier Selection -->
+                <div class="form-section" id="reportTiers" style="display: none;">
+                    <h3 class="section-title">📊 Select Report Tier</h3>
+                    <div class="pricing-options">
+                        <label class="pricing-option" onclick="selectTier('standard', 249)">
+                            <input type="radio" name="tier" value="standard">
+                            <div class="tier-name">Standard</div>
+                            <div class="tier-price">€249</div>
+                            <div class="tier-sla">✓ 24-hour delivery</div>
+                        </label>
+                        <label class="pricing-option featured" onclick="selectTier('premium', 349)">
+                            <input type="radio" name="tier" value="premium">
+                            <div class="tier-name">Premium</div>
+                            <div class="tier-price">€349</div>
+                            <div class="tier-sla">✓ 12-hour delivery</div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Monitoring Plan Selection -->
+                <div class="form-section" id="monitoringPlans" style="display: none;">
+                    <h3 class="section-title">📊 Select Monitoring Plan</h3>
+                    <div class="pricing-options">
+                        <label class="pricing-option" onclick="selectMonitoring('monitor', 35)">
+                            <input type="radio" name="monitoring_plan" value="monitor">
+                            <div class="tier-name">Monitor</div>
+                            <div class="tier-price">€35/mo</div>
+                            <div class="tier-sla">✓ Weekly digest (10 suppliers)</div>
+                        </label>
+                        <label class="pricing-option featured" onclick="selectMonitoring('alert', 105)">
+                            <input type="radio" name="monitoring_plan" value="alert">
+                            <div class="tier-name">Alert</div>
+                            <div class="tier-price">€105/mo</div>
+                            <div class="tier-sla">✓ Real-time alerts (25 suppliers)</div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Category Strategy Details -->
+                <div class="form-section" id="categoryStrategyDetails" style="display: none;">
+                    <div class="category-strategy-details">
+                        <h4>📋 Category Strategy Engagement Includes:</h4>
+                        <ul>
+                            <li>Comprehensive Word strategy document (10 sections)</li>
+                            <li>Interactive Excel financial model (5 sheets)</li>
+                            <li>3× Product 1 supplier analysis reports</li>
+                            <li>Options Workshop (2 hours) — stress-test strategic options</li>
+                            <li>Delivery Workshop (2 hours) — present recommendation & roadmap</li>
+                        </ul>
+                        <p style="margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">
+                            <strong>Delivery:</strong> 7-10 business days | <strong>Price:</strong> €3,999 (fixed)
+                        </p>
+                    </div>
+                    
+                    <h3 class="section-title" style="margin-top: 2rem;">📝 Category Strategy Intake</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="categoryName">Category Name <span class="required">*</span></label>
+                            <input type="text" id="categoryName" name="categoryName" placeholder="e.g., High Voltage Electrical Equipment">
+                        </div>
+                        <div class="form-group">
+                            <label for="annualSpend">Annual Spend (€) <span class="required">*</span></label>
+                            <input type="number" id="annualSpend" name="annualSpend" placeholder="e.g., 15000000">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="spendCurrency">Currency <span class="required">*</span></label>
+                            <select id="spendCurrency" name="spendCurrency">
+                                <option value="">Select currency...</option>
+                                <option value="EUR">EUR (€)</option>
+                                <option value="USD">USD ($)</option>
+                                <option value="GBP">GBP (£)</option>
+                                <option value="NOK">NOK (kr)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="timelineConstraint">Timeline Constraint (Optional)</label>
+                            <input type="text" id="timelineConstraint" name="timelineConstraint" placeholder="e.g., DG2 gate in 6 months">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="incumbentSuppliers">Incumbent Suppliers <span class="required">*</span></label>
+                        <textarea id="incumbentSuppliers" name="incumbentSuppliers" placeholder="List your current suppliers (2-3), relationship length, and annual spend with each..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="keyPainPoints">Key Pain Points <span class="required">*</span></label>
+                        <textarea id="keyPainPoints" name="keyPainPoints" placeholder="What challenges are you facing? e.g., long lead times, single source risk, cost escalation..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="strategicPriorities">Strategic Priorities <span class="required">*</span></label>
+                        <textarea id="strategicPriorities" name="strategicPriorities" placeholder="What are your goals? e.g., reduce cost, improve resilience, ESG compliance..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Your Details -->
+                <div class="form-section">
+                    <h3 class="section-title">👤 Your Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name <span class="required">*</span></label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="John Smith">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="john@company.com">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label for="jobTitle">Job Title</label>
+                            <input type="text" id="jobTitle" name="jobTitle" placeholder="Procurement Manager">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Company Information -->
+                <div class="form-section">
+                    <h3 class="section-title">🏢 Company Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="companyName">Company Name <span class="required">*</span></label>
+                            <input type="text" id="companyName" name="companyName" required placeholder="Acme Corporation">
+                        </div>
+                        <div class="form-group">
+                            <label for="industry">Industry <span class="required">*</span></label>
+                            <select id="industry" name="industry" required>
+                                <option value="">Select industry...</option>
+                                <option value="energy">Energy & Utilities</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="construction">Construction & Engineering</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="country">Country <span class="required">*</span></label>
+                            <select id="country" name="country" required>
+                                <option value="">Select country...</option>
+                                <option value="NO">Norway</option>
+                                <option value="SE">Sweden</option>
+                                <option value="DK">Denmark</option>
+                                <option value="DE">Germany</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="US">United States</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="companyNumber">Company Number / VAT</label>
+                            <input type="text" id="companyNumber" name="companyNumber" placeholder="e.g., 123456789">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supplier Report Requested -->
+                <div class="form-section" id="supplierSection">
+                    <h3 class="section-title">🔍 Supplier Report Requested</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="supplierName">Supplier Name <span class="required">*</span></label>
+                            <input type="text" id="supplierName" name="supplierName" required placeholder="e.g., Nel ASA">
+                        </div>
+                        <div class="form-group">
+                            <label for="supplierWebsite">Supplier Website</label>
+                            <input type="url" id="supplierWebsite" name="supplierWebsite" placeholder="https://www.supplier.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="analysisContext">Analysis Context</label>
+                        <textarea id="analysisContext" name="analysisContext" placeholder="Tell us about your relationship with this supplier..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="form-section">
+                    <h3 class="section-title">💳 Payment Method</h3>
+                    <div class="payment-options">
+                        <label class="payment-option" onclick="selectPayment('vipps')">
+                            <input type="radio" name="payment" value="vipps" required>
+                            <div class="payment-icon">📱</div>
+                            <div class="payment-name">Vipps</div>
+                        </label>
+                        <label class="payment-option" onclick="selectPayment('stripe')">
+                            <input type="radio" name="payment" value="stripe" required>
+                            <div class="payment-icon">💳</div>
+                            <div class="payment-name">Card</div>
+                        </label>
+                        <label class="payment-option" onclick="selectPayment('invoice')">
+                            <input type="radio" name="payment" value="invoice" required>
+                            <div class="payment-icon">📄</div>
+                            <div class="payment-name">Invoice</div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary" id="orderSummary" style="display: none;">
+                    <h4>Order Summary</h4>
+                    <div class="summary-row"><span>Product</span><span id="summaryTier">-</span></div>
+                    <div class="summary-row"><span>Total</span><span id="summaryTotal">€0</span></div>
+                </div>
+
+                <!-- Submit -->
+                <div class="submit-section">
+                    <button type="submit" class="submit-btn" id="submitBtn">Complete Order</button>
+                </div>
+            </form>
+
+            <!-- Success Message -->
+            <div id="successMessage" class="form-card success-message">
+                <div class="success-icon">✅</div>
+                <h2>Order Received!</h2>
+                <p>Your request has been submitted successfully.</p>
+                <div class="order-reference" id="orderReference">MF-2026-XXXXX</div>
+                <a href="index.html" class="submit-btn" style="display: inline-block; text-decoration: none; margin-top: 1rem;">Return to Home</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let selectedProduct = null, selectedTier = null, selectedMonitoring = null, selectedPrice = 0, selectedPayment = null;
+
+        function selectProduct(product) {
+            selectedProduct = product;
+            document.getElementById('reportTiers').style.display = product === 'report' ? 'block' : 'none';
+            document.getElementById('monitoringPlans').style.display = product === 'monitoring' ? 'block' : 'none';
+            document.getElementById('categoryStrategyDetails').style.display = product === 'category_strategy' ? 'block' : 'none';
+            document.getElementById('supplierSection').style.display = product === 'category_strategy' ? 'none' : 'block';
+            
+            if (product === 'category_strategy') {
+                selectedPrice = 3999;
+                document.querySelectorAll('.pricing-option').forEach(el => el.classList.remove('selected'));
+                event.currentTarget.classList.add('selected');
+            } else {
+                selectedTier = null;
+                selectedMonitoring = null;
+                selectedPrice = 0;
+            }
+            updateSummary();
+        }
+
+        function selectTier(tier, price) {
+            selectedTier = tier;
+            selectedPrice = price;
+            document.querySelectorAll('#reportTiers .pricing-option').forEach(el => el.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+            updateSummary();
+        }
+
+        function selectMonitoring(plan, price) {
+            selectedMonitoring = plan;
+            selectedPrice = price;
+            document.querySelectorAll('#monitoringPlans .pricing-option').forEach(el => el.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+            updateSummary();
+        }
+
+        function selectPayment(method) {
+            selectedPayment = method;
+            document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const summary = document.getElementById('orderSummary');
+            if (!selectedProduct || (!selectedTier && !selectedMonitoring && selectedProduct !== 'category_strategy')) {
+                summary.style.display = 'none';
+                return;
+            }
+            summary.style.display = 'block';
+            
+            let productName = '';
+            if (selectedProduct === 'report' && selectedTier) {
+                productName = selectedTier === 'standard' ? 'Standard Report (€249)' : 'Premium Report (€349)';
+            } else if (selectedProduct === 'monitoring' && selectedMonitoring) {
+                productName = selectedMonitoring === 'monitor' ? 'Monitor (€35/mo)' : 'Alert (€105/mo)';
+            } else if (selectedProduct === 'category_strategy') {
+                productName = 'Category Strategy (€3,999)';
+            }
+            
+            document.getElementById('summaryTier').textContent = productName;
+            document.getElementById('summaryTotal').textContent = '€' + selectedPrice;
+        }
+
+        // API Configuration
+        const API_BASE_URL = 'https://manuforti-api.railway.app/api';
+        
+        document.getElementById('orderForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+            
+            // Build order payload
+            const formData = {
+                product_type: selectedProduct,
+                tier: selectedTier,
+                monitoring_plan: selectedMonitoring,
+                price: selectedPrice,
+                payment_method: selectedPayment,
+                customer_name: document.getElementById('fullName').value,
+                customer_email: document.getElementById('email').value,
+                customer_phone: document.getElementById('phone').value || null,
+                job_title: document.getElementById('jobTitle').value || null,
+                company_name: document.getElementById('companyName').value,
+                industry: document.getElementById('industry').value,
+                country: document.getElementById('country').value,
+                company_number: document.getElementById('companyNumber').value || null,
+                supplier_name: document.getElementById('supplierName').value,
+                supplier_website: document.getElementById('supplierWebsite').value || null,
+                analysis_context: document.getElementById('analysisContext').value || null,
+                sla_hours: selectedProduct === 'category_strategy' ? 168 : (selectedTier === 'standard' ? 24 : 12)
+            };
+            
+            // Category strategy specific fields
+            if (selectedProduct === 'category_strategy') {
+                formData.category_name = document.getElementById('categoryName').value;
+                formData.annual_spend = document.getElementById('annualSpend').value;
+                formData.spend_currency = document.getElementById('spendCurrency').value;
+                formData.timeline_constraint = document.getElementById('timelineConstraint').value || null;
+                formData.incumbent_suppliers = document.getElementById('incumbentSuppliers').value;
+                formData.key_pain_points = document.getElementById('keyPainPoints').value;
+                formData.strategic_priorities = document.getElementById('strategicPriorities').value;
+            }
+            
+            try {
+                // Create order
+                const response = await fetch(`${API_BASE_URL}/orders`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to create order');
+                }
+                
+                const order = await response.json();
+                
+                // Handle payment based on method
+                if (selectedPayment === 'stripe') {
+                    // Get Stripe payment intent
+                    const paymentRes = await fetch(`${API_BASE_URL}/payments/stripe/create-intent`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            order_id: order.id,
+                            amount: selectedPrice * 100, // Convert to cents
+                            currency: 'eur'
+                        })
+                    });
+                    
+                    if (!paymentRes.ok) {
+                        throw new Error('Failed to create payment intent');
+                    }
+                    
+                    const paymentData = await paymentRes.json();
+                    
+                    // Redirect to payment page
+                    window.location.href = `payment.html?client_secret=${paymentData.client_secret}&order_id=${order.id}`;
+                    return;
+                    
+                } else if (selectedPayment === 'vipps') {
+                    // Create Vipps payment
+                    const paymentRes = await fetch(`${API_BASE_URL}/payments/vipps/create`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            order_id: order.id,
+                            amount: selectedPrice,
+                            currency: 'EUR'
+                        })
+                    });
+                    
+                    if (!paymentRes.ok) {
+                        throw new Error('Failed to create Vipps payment');
+                    }
+                    
+                    const paymentData = await paymentRes.json();
+                    
+                    // Redirect to Vipps
+                    window.location.href = paymentData.vipps_url;
+                    return;
+                    
+                } else if (selectedPayment === 'invoice') {
+                    // Invoice payment - order created, waiting for manual processing
+                    showSuccess(order);
+                }
+                
+            } catch (error) {
+                console.error('Order error:', error);
+                alert('Sorry, there was an error processing your order. Please try again or contact support@manuforti.com');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Complete Order';
+            }
+        });
+        
+        function showSuccess(order) {
+            document.getElementById('orderForm').style.display = 'none';
+            document.querySelector('.page-header').style.display = 'none';
+            document.getElementById('orderReference').textContent = order.id;
+            document.getElementById('successMessage').classList.add('show');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment — Manu Forti Intelligence</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --navy: #002147;
+            --cobalt: #2B6CB0;
+            --steel: #4A5568;
+            --white: #FFFFFF;
+            --gray: #718096;
+            --light-gray: #F7FAFC;
+            --green: #48BB78;
+            --border: #E2E8F0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--light-gray);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .payment-container {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            padding: 2.5rem;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .logo h1 {
+            color: var(--navy);
+            font-size: 1.5rem;
+        }
+        
+        .logo span {
+            color: var(--cobalt);
+        }
+        
+        h2 {
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+        
+        .order-info {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .order-info p {
+            color: var(--steel);
+            font-size: 0.9rem;
+            margin: 0.25rem 0;
+        }
+        
+        .amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        
+        #payment-element {
+            margin-bottom: 1.5rem;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--navy);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .submit-btn:hover {
+            background: var(--cobalt);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        #error-message {
+            color: #E53E3E;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .secure-badge {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        
+        .secure-badge svg {
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="logo">
+            <h1>Manu <span>Forti</span></h1>
+        </div>
+        
+        <h2>Complete Payment</h2>
+        
+        <div class="order-info">
+            <p><strong>Order:</strong> <span id="orderRef">Loading...</span></p>
+            <p><strong>Report:</strong> <span id="tierName">Loading...</span></p>
+        </div>
+        
+        <div class="amount" id="amount">$0</div>
+        
+        <form id="payment-form">
+            <div id="payment-element"></div>
+            <button type="submit" class="submit-btn" id="submit">
+                Pay Now
+            </button>
+            <div id="error-message"></div>
+        </form>
+        
+        <div class="secure-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            Secure payment powered by Stripe
+        </div>
+    </div>
+
+    <script>
+        // Get order info from URL or localStorage
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderRef = urlParams.get('ref');
+        
+        let orderData = null;
+        let stripe = null;
+        let elements = null;
+        
+        async function init() {
+            // Load order details
+            const stored = localStorage.getItem('current_order');
+            if (stored) {
+                orderData = JSON.parse(stored);
+            }
+            
+            if (!orderData || orderData.reference !== orderRef) {
+                document.getElementById('error-message').textContent = 'Order not found. Please try again.';
+                return;
+            }
+            
+            // Fetch order details from API
+            const API_BASE_URL = window.location.hostname === 'localhost' 
+                ? 'http://localhost:3000/api' 
+                : 'https://api.manuforti.com/api';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/orders/${orderRef}`);
+                const result = await response.json();
+                
+                if (result.order) {
+                    document.getElementById('orderRef').textContent = orderRef;
+                    document.getElementById('tierName').textContent = result.order.tier + ' Report';
+                    document.getElementById('amount').textContent = '$' + result.order.price;
+                }
+            } catch (err) {
+                console.error('Failed to load order:', err);
+            }
+            
+            // Initialize Stripe
+            stripe = Stripe(orderData.publishable_key);
+            
+            const options = {
+                clientSecret: orderData.client_secret,
+                appearance: {
+                    theme: 'stripe',
+                    variables: {
+                        colorPrimary: '#002147',
+                        colorBackground: '#ffffff',
+                        colorText: '#1a202c',
+                        colorDanger: '#E53E3E',
+                        borderRadius: '6px',
+                    }
+                }
+            };
+            
+            elements = stripe.elements(options);
+            const paymentElement = elements.create('payment');
+            paymentElement.mount('#payment-element');
+        }
+        
+        document.getElementById('payment-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span> Processing...';
+            
+            const { error } = await stripe.confirmPayment({
+                elements,
+                confirmParams: {
+                    return_url: window.location.origin + '/order-success.html?ref=' + orderRef
+                }
+            });
+            
+            if (error) {
+                document.getElementById('error-message').textContent = error.message;
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Pay Now';
+            }
+        });
+        
+        init();
+    </script>
+</body>
+</html>

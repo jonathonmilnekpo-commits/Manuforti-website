@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manu Forti Intelligence — Ant Design Version</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/antd@5.15.0/dist/antd.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/antd@5.15.0/dist/reset.css">
+    <link rel="stylesheet" href="https://unpkg.com/antd@5.15.0/dist/antd.min.css">
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        .hero-section {
+            background: linear-gradient(135deg, #002147 0%, #1a365d 100%);
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+        .hero-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+        .features-section {
+            padding: 64px 0;
+            background: #f5f5f5;
+        }
+        .pricing-section {
+            padding: 64px 0;
+            background: white;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: #002147;
+            margin-bottom: 48px;
+        }
+        .feature-card {
+            height: 100%;
+            transition: all 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        .pricing-card {
+            text-align: center;
+            border-radius: 8px;
+        }
+        .pricing-card.featured {
+            border: 2px solid #2B6CB0;
+            transform: scale(1.05);
+        }
+        .price-tag {
+            font-size: 36px;
+            font-weight: 700;
+            color: #2B6CB0;
+        }
+        .price-tag.featured {
+            color: #002147;
+        }
+        .contact-section {
+            background: #002147;
+            padding: 64px 0;
+            color: white;
+        }
+        .footer-section {
+            background: #001a38;
+            padding: 24px 0;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { Layout, Menu, Button, Card, Row, Col, Typography, Form, Input, Steps, Statistic, Badge } = antd;
+        const { Header, Content, Footer } = Layout;
+        const { Title, Text, Paragraph } = Typography;
+        const { Step } = Steps;
+
+        const App = () => {
+            const features = [
+                { icon: "🎯", title: "AI-Powered Analysis", desc: "Advanced AI models analyze financial health, operational capability, and ESG factors." },
+                { icon: "⚡", title: "24-Hour Delivery", desc: "Professional reports delivered within 24 hours, not weeks." },
+                { icon: "💼", title: "Procurement Expertise", desc: "Built by professionals with 80+ years of combined experience." },
+                { icon: "📊", title: "Executive-Ready Format", desc: "Beautiful reports with risk gauges and clear recommendations." },
+                { icon: "🌍", title: "Global Coverage", desc: "Evaluate suppliers anywhere in the world." },
+                { icon: "🔒", title: "Confidential & Secure", desc: "Enterprise-grade security for sensitive decisions." }
+            ];
+
+            const pricing = [
+                { title: "Standard", price: "$249", features: ["9-slide professional report", "Financial health analysis", "Operational assessment", "Risk rating", "24-hour delivery"], featured: false },
+                { title: "Premium", price: "$349", features: ["Everything in Standard", "ESG assessment", "Competitor benchmarking", "Commercial intelligence", "Priority 12-hour delivery"], featured: true },
+                { title: "Enterprise", price: "$499", features: ["Everything in Premium", "Custom scope", "Presentation deck", "Expert consultation", "Priority 6-hour delivery"], featured: false }
+            ];
+
+            return (
+                <Layout>
+                    <Header style={{ background: '#002147', padding: '0 50px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%' }}>
+                            <Title level={3} style={{ color: 'white', margin: 0 }}>
+                                Manu Forti <span style={{ color: '#2B6CB0' }}>Intelligence</span>
+                            </Title>
+                            <Menu theme="dark" mode="horizontal" style={{ background: 'transparent', border: 'none' }}>
+                                <Menu.Item key="1">Features</Menu.Item>
+                                <Menu.Item key="2">Pricing</Menu.Item>
+                                <Menu.Item key="3">How It Works</Menu.Item>
+                                <Menu.Item key="4">Contact</Menu.Item>
+                            </Menu>
+                        </div>
+                    </Header>
+
+                    <Content>
+                        {/* Hero Section */}
+                        <div className="hero-section">
+                            <Title className="hero-title" style={{ color: 'white' }}>
+                                Get a grip of procurement with a strong hand
+                            </Title>
+                            <Paragraph className="hero-subtitle">
+                                Get to grips with procurement with the use of AI and 80 years of procurement experience. 
+                                Professional supplier evaluation reports delivered in 24 hours.
+                            </Paragraph>
+                            <Button type="primary" size="large" style={{ background: '#2B6CB0', borderColor: '#2B6CB0', height: '48px', padding: '0 32px', fontSize: '16px' }}>
+                                Request a Demo
+                            </Button>
+                        </div>
+
+                        {/* Stats Section - Ant Design Feature */}
+                        <div style={{ background: '#fff', padding: '32px 0', borderBottom: '1px solid #f0f0f0' }}>
+                            <Row justify="center" gutter={[48, 24]}>
+                                <Col><Statistic title="Reports Delivered" value={500} suffix="+" /></Col>
+                                <Col><Statistic title="Average Rating" value={4.9} suffix="/5" /></Col>
+                                <Col><Statistic title="Response Time" value={24} suffix="hrs" /></Col>
+                                <Col><Statistic title="Risk Identified" value={1200} suffix="+" /></Col>
+                            </Row>
+                        </div>
+
+                        {/* Features Section */}
+                        <div className="features-section">
+                            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
+                                <Title className="section-title">Why Manu Forti?</Title>
+                                <Row gutter={[24, 24]}>
+                                    {features.map((f, i) => (
+                                        <Col xs={24} sm={12} lg={8} key={i}>
+                                            <Card className="feature-card" hoverable>
+                                                <div style={{ fontSize: '32px', marginBottom: '16px' }}>{f.icon}</div>
+                                                <Title level={4}>{f.title}</Title>
+                                                <Text type="secondary">{f.desc}</Text>
+                                            </Card>
+                                        </Col>
+                                    ))}
+                                </Row>
+                            </div>
+                        </div>
+
+                        {/* Pricing Section */}
+                        <div className="pricing-section">
+                            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
+                                <Title className="section-title">Simple, Transparent Pricing</Title>
+                                <Text style={{ display: 'block', textAlign: 'center', marginBottom: '48px', color: '#718096' }}>
+                                    No subscriptions. No hidden fees. Pay per report. USD pricing.
+                                </Text>
+                                <Row gutter={[24, 24]} justify="center">
+                                    {pricing.map((p, i) => (
+                                        <Col xs={24} md={8} key={i}>
+                                            <Card className={`pricing-card ${p.featured ? 'featured' : ''}`}>
+                                                <Title level={3}>{p.title}</Title>
+                                                <div className={`price-tag ${p.featured ? 'featured' : ''}`}>
+                                                    {p.price}<span style={{ fontSize: '16px', fontWeight: 'normal' }}>/report</span>
+                                                </div>
+                                                <ul style={{ listStyle: 'none', padding: 0, margin: '24px 0', textAlign: 'left' }}>
+                                                    {p.features.map((f, j) => (
+                                                        <li key={j} style={{ padding: '8px 0', borderBottom: j < p.features.length - 1 ? '1px solid #f0f0f0' : 'none' }}>
+                                                            <Badge status="success" text={f} style={{ marginLeft: '8px' }} />
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                                <Button type={p.featured ? 'primary' : 'default'} size="large" block>
+                                                    {p.featured ? 'Get Started' : 'Contact Us'}
+                                                </Button>
+                                            </Card>
+                                        </Col>
+                                    ))}
+                                </Row>
+                            </div>
+                        </div>
+
+                        {/* How It Works - Steps Component */}
+                        <div style={{ padding: '64px 0', background: '#f5f5f5' }}>
+                            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
+                                <Title className="section-title">How It Works</Title>
+                                <Steps current={-1} style={{ marginTop: '48px' }}>
+                                    <Step title="Submit Request" description="Tell us which supplier to evaluate" />
+                                    <Step title="AI Analysis" description="Our pipeline gathers and analyzes data" />
+                                    <Step title="Expert Review" description="Procurement experts validate findings" />
+                                    <Step title="Receive Report" description="Get your 9-slide report in 24 hours" />
+                                </Steps>
+                            </div>
+                        </div>
+
+                        {/* Contact Section */}
+                        <div className="contact-section">
+                            <div style={{ maxWidth: 600, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+                                <Title style={{ color: 'white' }}>Ready to evaluate your suppliers?</Title>
+                                <Paragraph style={{ color: 'rgba(255,255,255,0.8)', fontSize: '16px', marginBottom: '32px' }}>
+                                    Request a demo or submit your first supplier evaluation.
+                                </Paragraph>
+                                <Form layout="vertical" style={{ textAlign: 'left' }}>
+                                    <Form.Item>
+                                        <Input placeholder="Name" size="large" />
+                                    </Form.Item>
+                                    <Form.Item>
+                                        <Input placeholder="Email" size="large" />
+                                    </Form.Item>
+                                    <Form.Item>
+                                        <Input placeholder="Company" size="large" />
+                                    </Form.Item>
+                                    <Form.Item>
+                                        <Input.TextArea placeholder="Message" rows={4} />
+                                    </Form.Item>
+                                    <Button type="primary" size="large" block style={{ background: '#2B6CB0', borderColor: '#2B6CB0', height: '48px' }}>
+                                        Request a Demo
+                                    </Button>
+                                </Form>
+                            </div>
+                        </div>
+                    </Content>
+
+                    <Footer className="footer-section">
+                        © 2026 Manu Forti Intelligence. All rights reserved. | Confidential Supplier Evaluations
+                    </Footer>
+                </Layout>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>

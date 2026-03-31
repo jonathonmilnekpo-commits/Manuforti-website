@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Strategy — Manu Forti Intelligence</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #002147;
+            --cobalt: #2B6CB0;
+            --steel: #4A5568;
+            --white: #FFFFFF;
+            --gray: #718096;
+            --light-gray: #F7FAFC;
+            --green: #48BB78;
+            --amber: #ED8936;
+            --red: #E53E3E;
+            --border: #E2E8F0;
+            --light-blue: #EBF4FF;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; background: var(--light-gray); }
+
+        /* Header */
+        header { background: var(--navy); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--white); text-decoration: none; }
+        .logo span { color: #7EC8E3; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+        .nav-links a:hover { color: white; }
+        .nav-cta { background: var(--cobalt); color: white !important; padding: 0.5rem 1.2rem; border-radius: 6px; font-weight: 600 !important; }
+
+        /* Hero */
+        .hero { background: linear-gradient(135deg, var(--navy) 0%, #1a365d 100%); padding: 7rem 0 5rem; color: white; }
+        .hero-badge { display: inline-block; background: rgba(43,108,176,0.3); border: 1px solid rgba(43,108,176,0.6); color: #7EC8E3; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.15; margin-bottom: 1.2rem; max-width: 750px; }
+        .hero h1 span { color: #7EC8E3; }
+        .hero-subtitle { font-size: 1.2rem; color: rgba(255,255,255,0.75); max-width: 650px; margin-bottom: 2.5rem; line-height: 1.7; }
+        .hero-stats { display: flex; gap: 3rem; margin-bottom: 3rem; }
+        .stat { }
+        .stat-number { font-size: 2.2rem; font-weight: 800; color: white; }
+        .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+        .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary { background: var(--cobalt); color: white; padding: 0.9rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: background 0.2s; display: inline-block; }
+        .btn-primary:hover { background: #2558a0; }
+        .btn-secondary { background: transparent; border: 2px solid rgba(255,255,255,0.4); color: white; padding: 0.9rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.2s; display: inline-block; }
+        .btn-secondary:hover { border-color: white; }
+
+        /* Consultant comparison banner */
+        .comparison-banner { background: var(--cobalt); padding: 1.5rem 0; color: white; text-align: center; }
+        .comparison-banner p { font-size: 1.05rem; }
+        .comparison-banner strong { font-size: 1.1rem; }
+        .comparison-banner .saving { background: rgba(255,255,255,0.2); padding: 0.2rem 0.8rem; border-radius: 4px; font-weight: 700; margin-left: 0.5rem; }
+
+        /* What is section */
+        .what-is { padding: 5rem 0; background: white; }
+        .section-label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cobalt); margin-bottom: 0.75rem; }
+        .section-title { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin-bottom: 1rem; line-height: 1.2; }
+        .section-subtitle { font-size: 1.05rem; color: var(--steel); max-width: 650px; line-height: 1.7; }
+        .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+        .what-text p { color: var(--steel); line-height: 1.8; margin-bottom: 1.2rem; }
+        .what-output { background: var(--light-gray); border-radius: 12px; padding: 2rem; border: 1px solid var(--border); }
+        .what-output h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray); margin-bottom: 1.2rem; }
+        .output-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; }
+        .output-icon { width: 28px; height: 28px; background: var(--cobalt); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem; flex-shrink: 0; margin-top: 0.1rem; }
+        .output-item p { font-size: 0.95rem; color: var(--steel); }
+        .output-item strong { color: var(--navy); }
+
+        /* Process */
+        .process { padding: 5rem 0; background: var(--light-gray); }
+        .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+        .step { background: white; border-radius: 10px; padding: 2rem 1.5rem; border: 1px solid var(--border); position: relative; }
+        .step-num { width: 36px; height: 36px; background: var(--navy); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; margin-bottom: 1rem; }
+        .step h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+        .step p { font-size: 0.9rem; color: var(--steel); line-height: 1.6; }
+        .step-connector { display: none; }
+
+        /* Pricing */
+        .pricing { padding: 5rem 0; background: white; }
+        .pricing-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 3rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .pricing-card { background: var(--light-gray); border-radius: 12px; padding: 2.5rem; border: 2px solid var(--border); position: relative; transition: transform 0.2s, box-shadow 0.2s; }
+        .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,33,71,0.12); }
+        .pricing-card.featured { background: var(--navy); border-color: var(--navy); color: white; }
+        .tier-badge { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.3rem 0.8rem; border-radius: 20px; margin-bottom: 1rem; background: var(--light-blue); color: var(--cobalt); }
+        .pricing-card.featured .tier-badge { background: rgba(43,108,176,0.3); color: #7EC8E3; }
+        .popular-tag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--cobalt); color: white; font-size: 0.75rem; font-weight: 700; padding: 0.3rem 1rem; border-radius: 20px; white-space: nowrap; }
+        .pricing-card h3 { font-size: 1.3rem; font-weight: 800; color: var(--navy); margin-bottom: 0.5rem; }
+        .pricing-card.featured h3 { color: white; }
+        .card-tagline { font-size: 0.9rem; color: var(--gray); margin-bottom: 1.5rem; }
+        .pricing-card.featured .card-tagline { color: rgba(255,255,255,0.65); }
+        .price-block { margin-bottom: 1.5rem; }
+        .price { font-size: 2.8rem; font-weight: 800; color: var(--navy); line-height: 1; }
+        .pricing-card.featured .price { color: white; }
+        .price-suffix { font-size: 0.9rem; color: var(--gray); margin-top: 0.2rem; }
+        .pricing-card.featured .price-suffix { color: rgba(255,255,255,0.6); }
+        .turnaround { display: inline-block; font-size: 0.8rem; background: var(--light-blue); color: var(--cobalt); padding: 0.2rem 0.7rem; border-radius: 4px; font-weight: 600; margin-bottom: 1.5rem; }
+        .pricing-card.featured .turnaround { background: rgba(43,108,176,0.3); color: #7EC8E3; }
+        .features { list-style: none; margin-bottom: 2rem; }
+        .features li { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.8rem; font-size: 0.9rem; color: var(--steel); }
+        .pricing-card.featured .features li { color: rgba(255,255,255,0.85); }
+        .features li::before { content: "✓"; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem; }
+        .pricing-card.featured .features li::before { color: #68D391; }
+        .card-cta { display: block; text-align: center; padding: 0.9rem; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.95rem; transition: all 0.2s; }
+        .card-cta-primary { background: var(--cobalt); color: white; }
+        .card-cta-primary:hover { background: #2558a0; }
+        .card-cta-outline { background: transparent; border: 2px solid var(--border); color: var(--navy); }
+        .card-cta-outline:hover { border-color: var(--navy); }
+        .card-cta-white { background: white; color: var(--navy); }
+        .card-cta-white:hover { background: var(--light-gray); }
+        .consulting-note { font-size: 0.8rem; text-align: center; color: var(--gray); margin-top: 0.75rem; }
+        .pricing-card.featured .consulting-note { color: rgba(255,255,255,0.5); }
+
+        /* Use case */
+        .use-case { padding: 5rem 0; background: var(--light-gray); }
+        .case-box { background: white; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; }
+        .case-left { padding: 3rem; background: var(--navy); color: white; }
+        .case-left h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .case-left p { color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 1rem; }
+        .case-tag { display: inline-block; background: rgba(43,108,176,0.4); color: #7EC8E3; font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1.5rem; }
+        .case-result { background: rgba(72,187,120,0.15); border: 1px solid rgba(72,187,120,0.3); border-radius: 8px; padding: 1rem 1.5rem; margin-top: 1.5rem; }
+        .case-result-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #68D391; margin-bottom: 0.3rem; }
+        .case-result p { color: rgba(255,255,255,0.9); font-size: 0.95rem; margin: 0; }
+        .case-right { padding: 3rem; }
+        .case-right h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 1.5rem; }
+        .deliverable-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: var(--light-gray); border-radius: 6px; margin-bottom: 0.75rem; }
+        .deliverable-icon { font-size: 1.1rem; }
+        .deliverable-item span { font-size: 0.9rem; color: var(--steel); }
+
+        /* Comparison table */
+        .comparison { padding: 5rem 0; background: white; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 3rem; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 20px rgba(0,33,71,0.08); }
+        .comparison-table th { background: var(--navy); color: white; padding: 1.2rem 1.5rem; text-align: left; font-size: 0.9rem; font-weight: 700; }
+        .comparison-table th:not(:first-child) { text-align: center; }
+        .comparison-table td { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--steel); }
+        .comparison-table td:not(:first-child) { text-align: center; }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:nth-child(even) td { background: var(--light-gray); }
+        .comparison-table td:nth-child(3) { background: var(--light-blue) !important; font-weight: 600; color: var(--navy); }
+        .comparison-table th:nth-child(3) { background: var(--cobalt); }
+        .check { color: var(--green); font-size: 1.1rem; }
+        .cross { color: #CBD5E0; font-size: 1.1rem; }
+
+        /* CTA */
+        .cta { padding: 5rem 0; background: linear-gradient(135deg, var(--navy) 0%, #1a365d 100%); color: white; text-align: center; }
+        .cta h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .cta p { font-size: 1.1rem; color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto 2.5rem; }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        /* Footer */
+        footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 2rem 0; text-align: center; font-size: 0.85rem; }
+        footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+            .what-grid, .process-steps, .pricing-grid, .case-box { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <a href="index.html" class="logo">Manu Forti <span>Intelligence</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="order.html">Supplier Reports</a></li>
+                <li><a href="category-strategy.html" style="color:white;font-weight:600;">Category Strategy</a></li>
+                <li><a href="academy.html">Academy</a></li>
+                <li><a href="order.html" class="nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-badge">New Product · Category Strategy</div>
+        <h1>Your Category Strategy,<br><span>Built by AI. Delivered in 10 Days.</span></h1>
+        <p class="hero-subtitle">A complete procurement category strategy — market analysis, workshops, strategic options, MCDM evaluation, business case, and implementation roadmap. Delivered at a fraction of consulting cost.</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-number">€3,999</div>
+                <div class="stat-label">All-in price</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">7-10 days</div>
+                <div class="stat-label">Delivery</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Less than consultants</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">MCDM</div>
+                <div class="stat-label">Quantitative methodology</div>
+            </div>
+        </div>
+        <div class="hero-ctas">
+            <a href="#pricing" class="btn-primary">View Pricing</a>
+            <a href="order.html" class="btn-secondary">Talk to Us First</a>
+        </div>
+    </div>
+</section>
+
+<!-- Comparison Banner -->
+<div class="comparison-banner">
+    <div class="container">
+        <p>McKinsey, BCG or Accenture charge <strong>€30,000–150,000</strong> for a category strategy. Manu Forti delivers the same rigour for <strong>€3,999</strong> — including two expert workshops.<span class="saving">95% saving</span></p>
+    </div>
+</div>
+
+<!-- What is it -->
+<section class="what-is">
+    <div class="container">
+        <div class="section-label">What You Get</div>
+        <h2 class="section-title">More than a report.<br>A decision-ready strategy.</h2>
+        <p class="section-subtitle">A category strategy isn't just market data — it's a structured argument for how your organisation should approach a spend category, backed by quantitative analysis and a clear business case.</p>
+        <div class="what-grid">
+            <div class="what-text">
+                <p>Most procurement teams never produce a formal category strategy. They lack the time, the methodology, and the confidence to present one to a CPO or CFO. The work ends up either not done, or outsourced to consultants at enormous cost.</p>
+                <p>Manu Forti changes that. We apply the same analytical rigour used by top-tier consulting firms — MCDM evaluation (AHP/TOPSIS), scenario modelling, business case construction — but deliver it in days, not months, at a price any team can justify.</p>
+                <p>The output is designed to be taken directly to your leadership team. Every section is structured for executive consumption: clear recommendation, quantified value, implementation roadmap, decision-ready.</p>
+            </div>
+            <div class="what-output">
+                <h4>What's Delivered</h4>
+                <div class="output-item">
+                    <div class="output-icon">📊</div>
+                    <p><strong>Market Analysis</strong> — Supplier landscape, pricing dynamics, supply risk, key players, market trends</p>
+                </div>
+                <div class="output-item">
+                    <div class="output-icon">⚖️</div>
+                    <p><strong>Strategic Options Evaluation</strong> — 4–6 options scored via MCDM (AHP weighting + TOPSIS ranking)</p>
+                </div>
+                <div class="output-item">
+                    <div class="output-icon">💶</div>
+                    <p><strong>Business Case</strong> — Costs vs value, ROI, 5-year NPV, scenario analysis (Bear/Base/Bull)</p>
+                </div>
+                <div class="output-item">
+                    <div class="output-icon">🗺️</div>
+                    <p><strong>Implementation Roadmap</strong> — Phased plan, owners, 12-month timeline, KPIs</p>
+                </div>
+                <div class="output-item">
+                    <div class="output-icon">🤝</div>
+                    <p><strong>Options Workshop (2 hrs)</strong> — Joint session to explore strategies, excavate value, and confirm AHP criteria weights</p>
+                </div>
+                <div class="output-item">
+                    <div class="output-icon">🎯</div>
+                    <p><strong>Delivery Workshop (2 hrs)</strong> — Walk through recommendation, validate financials, agree implementation next steps</p>
+                </div>
+                <div class="output-item">
+                    <div class="output-icon">📑</div>
+                    <p><strong>3× Product 1 Supplier Reports</strong> — Deep-dive analysis on your top 3 incumbent or target suppliers</p>
+                </div>
+                <div class="output-item">
+                    <div class="output-icon">📁</div>
+                    <p><strong>Financial Model</strong> — Excel workbook with all assumptions, scenarios, and sensitivity analysis</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process -->
+<section class="process">
+    <div class="container">
+        <div class="section-label">How It Works</div>
+        <h2 class="section-title">From brief to boardroom in 5 steps</h2>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h4>You Brief Us</h4>
+                <p>Complete a structured intake form: category, spend, current suppliers, pain points, evaluation criteria, and strategic priorities. Takes 20 minutes.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h4>Market Research</h4>
+                <p>Our analysts research the market: supplier landscape, financial health, geopolitical risk, pricing benchmarks, regulatory environment.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h4>Options Workshop (2 hrs)</h4>
+                <p>Joint session with your team: present initial options, excavate hidden value, stress-test assumptions, and agree AHP criteria weights. This is where the real insight happens.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <h4>Business Case</h4>
+                <p>We model the financial case for the recommended strategy: costs, value created, ROI, NPV, and sensitivity to key assumptions.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">5</div>
+                <h4>Delivery Workshop</h4>
+                <p>Full document pack delivered (Word + Excel + 3× supplier reports). Mandatory 2-hour delivery workshop to walk through findings, validate the financial case, and agree implementation next steps.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing" id="pricing">
+    <div class="container">
+        <div class="section-label">Pricing</div>
+        <h2 class="section-title">One price. Everything included.</h2>
+        <p class="section-subtitle">Strategy + Intelligence — the complete package. Market analysis, expert workshops, MCDM evaluation, business case, implementation roadmap, and 3 supplier reports. One price, no add-ons.</p>
+        <div class="pricing-grid">
+
+            <!-- Strategy + Intelligence -->
+            <div class="pricing-card" style="border: 2px solid var(--cobalt); max-width: 600px; margin: 0 auto;">
+                <div class="tier-badge" style="background: var(--cobalt); color: white; padding: 0.3rem 1rem; border-radius: 4px; display: inline-block; margin-bottom: 0.5rem;">Strategy + Intelligence</div>
+                <h3>Complete Category Strategy</h3>
+                <p class="card-tagline">For procurement teams who need a decision-ready strategy, validated with suppliers</p>
+                <div class="price-block">
+                    <div class="price">€3,999</div>
+                    <div class="price-suffix">one-off · VAT not included</div>
+                </div>
+                <div class="turnaround">⏱ 7–10 business days</div>
+                <ul class="features">
+                    <li>✅ Full market analysis + supplier landscape</li>
+                    <li>✅ Cost driver analysis — 5-year lookback + forward projections</li>
+                    <li>✅ 4–6 strategic options with MCDM scoring (AHP/TOPSIS)</li>
+                    <li>✅ <strong>Options Workshop (2 hrs)</strong> — joint session to excavate value</li>
+                    <li>✅ Recommended strategy with rationale</li>
+                    <li>✅ Business case: costs, value, ROI, 5-yr NPV (Bear/Base/Bull)</li>
+                    <li>✅ Implementation roadmap (phases, owners, timeline)</li>
+                    <li>✅ Excel financial model with AHP/TOPSIS + scenario analysis</li>
+                    <li>✅ 3× Product 1 supplier intelligence reports</li>
+                    <li>✅ <strong>Delivery Workshop (2 hrs)</strong> — agree next steps</li>
+                    <li>✅ Delivered: Word strategy + XLSX model</li>
+                </ul>
+                <a href="order.html?product=category-strategy" class="card-cta" style="background: var(--cobalt); color: white; display: block; text-align: center; padding: 1rem; border-radius: 8px; text-decoration: none; font-weight: 700; margin-top: 1.5rem;">Order Now — €3,999</a>
+                <p class="consulting-note">Consulting equivalent: €30,000–150,000</p>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+<!-- Case Study -->
+<section class="use-case">
+    <div class="container">
+        <div class="section-label">Reference Case</div>
+        <h2 class="section-title">Built and validated at scale</h2>
+        <div class="case-box">
+            <div class="case-left">
+                <div class="case-tag">Energy / Infrastructure</div>
+                <h3>HV Electrical Equipment Category Strategy</h3>
+                <p>A major European renewable energy company faced a critical procurement challenge: high-voltage transformer lead times of 28–34 months were consistently exceeding their project procurement window of 18 months.</p>
+                <p>We built a full category strategy evaluating 6 strategic options using AHP/TOPSIS methodology, developed a two-tier commitment framework (Conditional POs + Consignment Pilot), and produced a complete financial business case and executive presentation for CPO/CEO sign-off.</p>
+                <div class="case-result">
+                    <div class="case-result-label">Business Case Outcome</div>
+                    <p>€0.62M annual programme cost returns €55.6M in avoided delay costs — a <strong>90:1 ROI</strong> and €278M 5-year NPV.</p>
+                </div>
+            </div>
+            <div class="case-right">
+                <h4>Deliverables Produced</h4>
+                <div class="deliverable-item">
+                    <span class="deliverable-icon">📄</span>
+                    <span>40-page strategy document (10 sections, full methodology)</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="deliverable-icon">📊</span>
+                    <span>Excel model with AHP/TOPSIS scoring + 5 financial scenarios</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="deliverable-icon">📑</span>
+                    <span>3× supplier intelligence reports (Siemens, ABB, Hitachi)</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="deliverable-icon">📦</span>
+                    <span>24-component lead time analysis + Tier A/B classification</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="deliverable-icon">🗺️</span>
+                    <span>5-phase implementation roadmap with owners and milestones</span>
+                </div>
+                <div class="deliverable-item">
+                    <span class="deliverable-icon">💶</span>
+                    <span>Business case: Bear/Base/Bull scenarios with NPV and ROI</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Comparison table -->
+<section class="comparison">
+    <div class="container">
+        <div class="section-label">How We Compare</div>
+        <h2 class="section-title">The same rigour. A fraction of the cost.</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Capability</th>
+                    <th>Big 4 Consulting</th>
+                    <th>Manu Forti</th>
+                    <th>DIY / Internal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>MCDM methodology (AHP/TOPSIS)</td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="cross">✗</span></td>
+                </tr>
+                <tr>
+                    <td>Financial business case with NPV/ROI</td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td>Sometimes</td>
+                </tr>
+                <tr>
+                    <td>Executive slide deck (CEO-ready)</td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="cross">✗</span></td>
+                </tr>
+                <tr>
+                    <td>Market research + supplier landscape</td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td>Partial</td>
+                </tr>
+                <tr>
+                    <td>Implementation roadmap</td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="cross">✗</span></td>
+                </tr>
+                <tr>
+                    <td>Turnaround time</td>
+                    <td>6–16 weeks</td>
+                    <td><strong>5 business days</strong></td>
+                    <td>Weeks–months</td>
+                </tr>
+                <tr>
+                    <td>Typical cost</td>
+                    <td>€30,000–150,000</td>
+                    <td><strong>€3,999</strong></td>
+                    <td>Internal time cost</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="container">
+        <h2>Ready to build your category strategy?</h2>
+        <p>Tell us your category, your challenge, and your timeline. We'll take it from there.</p>
+        <div class="cta-buttons">
+            <a href="order.html?product=category-strategy" class="btn-primary">Order Category Strategy — €3,999</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>© 2026 Manu Forti Intelligence · <a href="index.html">Home</a> · <a href="order.html">Products</a> · <a href="academy.html">Academy</a> · Confidential</p>
+    </div>
+</footer>
+
+</body>
+</html>

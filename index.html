@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manu Forti Intelligence — Expert Procurement Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0a0e27;
+            --navy-light: #1a1f4d;
+            --cobalt: #3B82F6;
+            --cyan: #06B6D4;
+            --white: #FFFFFF;
+            --gray-100: #F8FAFC;
+            --gray-200: #E2E8F0;
+            --gray-400: #94A3B8;
+            --gray-600: #475569;
+            --gray-800: #1E293B;
+            --green: #10B981;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--white);
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%);
+            color: white !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 6px;
+            font-weight: 600 !important;
+            transition: transform 0.2s, box-shadow 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Hero - Canva Design */
+        .hero {
+            background-image: url('hero-v1.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--navy);
+            letter-spacing: -0.03em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--navy);
+            border: 2px solid var(--gray-200);
+            box-shadow: none;
+            margin-left: 1rem;
+        }
+
+        .cta-button.secondary:hover {
+            border-color: var(--cobalt);
+            color: var(--cobalt);
+        }
+
+        /* Value Prop Section - Using hero-v2 style */
+        .value-prop {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e3a8a 100%);
+            padding: 6rem 0;
+            color: var(--white);
+        }
+
+        .value-prop-content {
+            max-width: 800px;
+        }
+
+        .value-prop h2 {
+            font-size: 2.75rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            color: var(--white);
+        }
+
+        .value-prop p {
+            font-size: 1.35rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 2rem;
+        }
+
+        .services-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .services-list li {
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            color: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .services-list li::before {
+            content: "→";
+            color: var(--cyan);
+            font-weight: 700;
+        }
+
+        /* Features */
+        .features {
+            padding: 6rem 0;
+            background: var(--gray-100);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            color: var(--gray-600);
+            font-size: 1.1rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--gray-200);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            color: var(--navy);
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--gray-100);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--cobalt);
+            transform: translateY(-4px);
+        }
+
+        .pricing-card.featured {
+            background: var(--navy);
+            color: var(--white);
+            transform: scale(1.02);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.02) translateY(-4px);
+        }
+
+        .popular-tag {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .pricing-card.featured h3 {
+            color: var(--white);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin: 1rem 0;
+            line-height: 1;
+        }
+
+        .pricing-card.featured .price {
+            color: var(--white);
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.7;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .pricing-card li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--gray-600);
+        }
+
+        .pricing-card.featured li {
+            color: rgba(255,255,255,0.85);
+        }
+
+        .pricing-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        .card-cta {
+            display: block;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .card-cta-primary {
+            background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%);
+            color: white;
+        }
+
+        .card-cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        .card-cta-white {
+            background: var(--white);
+            color: var(--navy);
+        }
+
+        .card-cta-white:hover {
+            background: var(--gray-100);
+        }
+
+        /* Category Strategy Highlight */
+        .category-highlight {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            margin: 4rem 0;
+            border-radius: 16px;
+        }
+
+        .category-highlight-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .category-highlight h3 {
+            font-size: 2rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .category-highlight p {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .category-features {
+            list-style: none;
+        }
+
+        .category-features li {
+            padding: 0.5rem 0;
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-features li::before {
+            content: "✓";
+            color: var(--cobalt);
+            font-weight: 700;
+        }
+
+        .category-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin: 1rem 0;
+        }
+
+        /* How it Works */
+        .how-it-works {
+            padding: 6rem 0;
+            background: var(--gray-100);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h3 {
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .step p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.6);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .category-highlight-content {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .cta-button.secondary {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Manu Forti <span>Intelligence</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Supplier Analysis</a></li>
+                <li><a href="category-strategy.html">Category Strategy</a></li>
+                <li><a href="academy.html">Academy</a></li>
+                <li><a href="order.html" class="nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero - Canva Design -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-label">MANU FORTI</div>
+                <h1>Get a grip on your Procurement</h1>
+                <p>Expert procurement intelligence combining cutting-edge analysis with 80+ years of procurement expertise. Professional evaluation reports delivered in 6-24 hours.</p>
+                <div class="hero-buttons">
+                    <a href="order.html" class="cta-button">Explore Solutions</a>
+                    <a href="#how-it-works" class="cta-button secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Prop Section - Deep Blue Gradient -->
+    <section class="value-prop">
+        <div class="container">
+            <div class="value-prop-content">
+                <h2>Procurement decisions with intelligence.</h2>
+                <p>Manu Forti gives you the data to drive procurement confidence. From supplier analysis to full category strategy, we deliver the insights you need to make better decisions.</p>
+                <ul class="services-list">
+                    <li>Supplier Analysis Reports</li>
+                    <li>Category Strategy</li>
+                    <li>Supplier Media Monitoring</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Manu Forti?</h2>
+                <p>Built by procurement professionals for procurement professionals</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Practitioner-grade Analysis</h3>
+                    <p>Our expert team analyzes financial health, operational capability, geopolitical risk, and ESG factors for comprehensive supplier intelligence.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>24-Hour Delivery</h3>
+                    <p>Professional 9-slide reports delivered within 24 hours. No waiting weeks for traditional credit assessments.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Procurement Expertise</h3>
+                    <p>Built by procurement professionals with 80+ years of combined experience in energy, manufacturing, and global supply chains.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Executive-Ready Format</h3>
+                    <p>Beautiful, professional reports with risk gauges, financial charts, and clear recommendations your board will appreciate.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Global Coverage</h3>
+                    <p>Evaluate suppliers anywhere in the world. From Chinese manufacturers to European energy companies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Confidential & Secure</h3>
+                    <p>Your supplier evaluations remain strictly confidential. Enterprise-grade security for sensitive procurement decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Simple, Transparent Pricing</h2>
+                <p>No hidden fees. Pay for what you need.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Standard</h3>
+                    <div class="price">€249<span>/report</span></div>
+                    <ul>
+                        <li>9-slide professional report</li>
+                        <li>Financial health analysis</li>
+                        <li>Risk assessment & ESG review</li>
+                        <li>Competitive benchmarking</li>
+                        <li>24-hour delivery</li>
+                    </ul>
+                    <a href="order.html?tier=standard" class="card-cta card-cta-primary">Order Now</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="popular-tag">Most Popular</div>
+                    <h3>Premium</h3>
+                    <div class="price">€349<span>/report</span></div>
+                    <ul>
+                        <li>Everything in Standard</li>
+                        <li>Priority 12-hour delivery</li>
+                        <li>Phone consultation included</li>
+                        <li>Enhanced ESG deep-dive</li>
+                    </ul>
+                    <a href="order.html?tier=premium" class="card-cta card-cta-white">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Category Strategy -->
+            <div class="category-highlight">
+                <div class="container">
+                    <div class="category-highlight-content">
+                        <div>
+                            <h3>Category Strategy</h3>
+                            <p>Full procurement category strategy — market analysis, MCDM evaluation, business case, and two expert workshops. One price, everything included.</p>
+                            <ul class="category-features">
+                                <li>Full market analysis + cost driver trends</li>
+                                <li>4–6 options with AHP/TOPSIS evaluation</li>
+                                <li>2× workshops included</li>
+                                <li>Business case with Bear/Base/Bull scenarios</li>
+                                <li>3× supplier intelligence reports</li>
+                            </ul>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="category-price">€3,999</div>
+                            <p style="color: var(--gray-600); margin-bottom: 1.5rem;">7–10 day delivery</p>
+                            <a href="category-strategy.html" class="cta-button">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>From request to report in four simple steps</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Submit Request</h3>
+                    <p>Tell us which supplier you need evaluated. Provide their name, website, and any specific concerns.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Intelligence Gathering</h3>
+                    <p>Our team gathers data, analyzes financials, assesses risks, and generates expert insights.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Expert Review</h3>
+                    <p>Procurement experts review the analysis, add context, and validate recommendations.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Receive Report</h3>
+                    <p>Get your professional 9-slide report within 24 hours, ready for your board or procurement committee.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to evaluate your suppliers?</h2>
+            <p>Be among the first procurement professionals to use Manu Forti. Professional supplier intelligence delivered in 24 hours.</p>
+            <a href="order.html" class="cta-button">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Supplier Analysis</a>
+                <a href="category-strategy.html">Category Strategy</a>
+                <a href="academy.html">Academy</a>
+                <a href="mailto:manuforti.as@gmail.com">Contact</a>
+            </div>
+            <p>&copy; 2026 Manu Forti Intelligence. All rights reserved. | Confidential Supplier Evaluations</p>
+        </div>
+    </footer>
+</body>
+</html>
