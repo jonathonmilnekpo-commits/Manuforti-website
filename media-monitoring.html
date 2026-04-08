@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supplier Analysis Reports — Manu Forti Intelligence</title>
+    <title>Media Monitoring — Manu Forti Intelligence</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
@@ -75,7 +75,6 @@
         .step-num { width: 36px; height: 36px; background: var(--navy); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; margin-bottom: 1rem; }
         .step h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
         .step p { font-size: 0.9rem; color: var(--steel); line-height: 1.6; }
-        .step-connector { display: none; }
 
         /* Pricing */
         .pricing { padding: 5rem 0; background: white; }
@@ -119,9 +118,9 @@
         .sample-tag { display: inline-block; background: rgba(43,108,176,0.4); color: #7EC8E3; font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1.5rem; }
         .sample-right { padding: 3rem; }
         .sample-right h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 1.5rem; }
-        .slide-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: var(--light-gray); border-radius: 6px; margin-bottom: 0.75rem; }
-        .slide-num { width: 24px; height: 24px; background: var(--cobalt); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; }
-        .slide-item span { font-size: 0.9rem; color: var(--steel); }
+        .deliverable-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: var(--light-gray); border-radius: 6px; margin-bottom: 0.75rem; }
+        .deliverable-icon { font-size: 1.1rem; }
+        .deliverable-item span { font-size: 0.9rem; color: var(--steel); }
 
         /* CTA */
         .cta { padding: 5rem 0; background: linear-gradient(135deg, var(--navy) 0%, #1a365d 100%); color: white; text-align: center; }
@@ -149,9 +148,9 @@
             <a href="index.html" class="logo">Manu Forti <span>Intelligence</span></a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="supplier-analysis.html" style="color:white;font-weight:600;">Supplier Reports</a></li>
+                <li><a href="supplier-analysis.html">Supplier Reports</a></li>
                 <li><a href="category-strategy.html">Category Strategy</a></li>
-                <li><a href="media-monitoring.html">Media Monitoring</a></li>
+                <li><a href="media-monitoring.html" style="color:white;font-weight:600;">Media Monitoring</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="order.html" class="nav-cta">Get Started</a></li>
             </ul>
@@ -162,30 +161,30 @@
 <!-- Hero -->
 <section class="hero">
     <div class="container">
-        <div class="hero-badge">Supplier Intelligence</div>
-        <h1>Know Your Supplier.<br><span>Before You Sign.</span></h1>
-        <p class="hero-subtitle">A professional 9-slide supplier analysis report — financial health, risk profile, market position, and ESG assessment. Delivered in 48 hours. Built for procurement teams who need confidence before committing.</p>
+        <div class="hero-badge">Continuous Intelligence</div>
+        <h1>Know What's Being Said.<br><span>Before It Becomes a Problem.</span></h1>
+        <p class="hero-subtitle">Continuous media monitoring for procurement teams — track supplier news, reputation risks, ESG incidents, and market developments. Get alerted to what matters, ignore the noise.</p>
         <div class="hero-stats">
             <div class="stat">
-                <div class="stat-number">9 Slides</div>
-                <div class="stat-label">Executive format</div>
+                <div class="stat-number">€35/mo</div>
+                <div class="stat-label">Monitor tier</div>
             </div>
             <div class="stat">
-                <div class="stat-number">48 Hours</div>
-                <div class="stat-label">Standard delivery</div>
+                <div class="stat-number">Daily</div>
+                <div class="stat-label">Monitoring</div>
             </div>
             <div class="stat">
-                <div class="stat-number">€249</div>
-                <div class="stat-label">Per report</div>
+                <div class="stat-number">30+</div>
+                <div class="stat-label">News sources</div>
             </div>
             <div class="stat">
-                <div class="stat-number">PPTX</div>
-                <div class="stat-label">Editable format</div>
+                <div class="stat-number">Alerts</div>
+                <div class="stat-label">Instant notifications</div>
             </div>
         </div>
         <div class="hero-ctas">
             <a href="#pricing" class="btn-primary">View Pricing</a>
-            <a href="order.html" class="btn-secondary">Order Now</a>
+            <a href="order.html" class="btn-secondary">Start Monitoring</a>
         </div>
     </div>
 </section>
@@ -193,7 +192,7 @@
 <!-- Comparison Banner -->
 <div class="comparison-banner">
     <div class="container">
-        <p>Traditional due diligence costs <strong>€5,000–15,000</strong> and takes weeks. Manu Forti delivers the same rigour in <strong>48 hours</strong> starting at <strong>€249</strong>.<span class="saving">95% cheaper</span></p>
+        <p>Traditional media monitoring services cost <strong>€500–2,000/month</strong>. Manu Forti delivers comprehensive coverage from <strong>€35/month</strong>.<span class="saving">90%+ saving</span></p>
     </div>
 </div>
 
@@ -201,51 +200,43 @@
 <section class="what-is">
     <div class="container">
         <div class="section-label">What You Get</div>
-        <h2 class="section-title">A complete supplier profile.<br>Delivered presentation-ready.</h2>
-        <p class="section-subtitle">Most procurement decisions are made with incomplete information. Our supplier analysis reports give you the full picture — financial stability, risk exposure, competitive position, and ESG credentials — in a format you can present to leadership immediately.</p>
+        <h2 class="section-title">Early warning for supplier risk.<br>Competitive intelligence. Reputation protection.</h2>
+        <p class="section-subtitle">Supplier failures don't happen overnight. They start with missed deliveries, executive departures, credit downgrades, ESG incidents — signals that appear in the news weeks or months before the crisis hits.</p>
         <div class="what-grid">
             <div class="what-text">
-                <p>Every supplier evaluation involves risk. Will they deliver? Are they financially stable? What happens if they fail? These questions keep procurement leaders awake at night — especially when supplier failures can halt billion-dollar projects.</p>
-                <p>Manu Forti combines deep research with professional presentation. We analyse financial statements, credit ratings, market position, news sentiment, and ESG performance. The output is a 9-slide deck that answers the questions your CFO and CPO will ask.</p>
-                <p>Use it for pre-qualification, final due diligence, or annual supplier reviews. The format follows industry intelligence standards — professional, presentation-ready, and designed for executive consumption.</p>
+                <p>Most procurement teams learn about supplier problems too late. A critical component fails. A key supplier enters administration. An ESG scandal breaks. By the time you hear about it, your options are limited and expensive.</p>
+                <p>Manu Forti's Media Monitoring gives you the early warning system you need. We continuously track your suppliers across news, trade publications, social media, and regulatory filings. When something significant happens — financial distress, leadership changes, cyber incidents, contract wins or losses — you know immediately.</p>
+                <p>Use it for supplier risk management, competitive intelligence, ESG monitoring, or market awareness. The Monitor tier gives you a weekly digest of all coverage. The Alert tier adds real-time notifications for critical events. Enterprise adds custom sources, stakeholder tracking, and analyst commentary.</p>
             </div>
             <div class="what-output">
-                <h4>9-Slide Report Structure</h4>
+                <h4>What's Monitored</h4>
                 <div class="output-item">
-                    <div class="output-icon">1</div>
-                    <p><strong>Executive Summary</strong> — Key findings and recommendation at a glance</p>
+                    <div class="output-icon">📰</div>
+                    <p><strong>News & Press</strong> — Breaking news, press releases, earnings announcements, M&A activity</p>
                 </div>
                 <div class="output-item">
-                    <div class="output-icon">2</div>
-                    <p><strong>Company Overview</strong> — Business model, ownership, organisational structure</p>
+                    <div class="output-icon">💼</div>
+                    <p><strong>Financial Signals</strong> — Credit rating changes, profit warnings, debt restructuring, stock movements</p>
                 </div>
                 <div class="output-item">
-                    <div class="output-icon">3</div>
-                    <p><strong>Financial Health</strong> — Revenue trend, debt/EBITDA, net cash position, credit rating</p>
+                    <div class="output-icon">👥</div>
+                    <p><strong>Leadership Changes</strong> — CEO/CFO departures, board appointments, executive scandals</p>
                 </div>
                 <div class="output-item">
-                    <div class="output-icon">4</div>
-                    <p><strong>Risk Assessment</strong> — Risk gauge visual + detailed factor analysis</p>
+                    <div class="output-icon">⚠️</div>
+                    <p><strong>ESG Incidents</strong> — Environmental violations, labour disputes, safety incidents, sanctions</p>
                 </div>
                 <div class="output-item">
-                    <div class="output-icon">5</div>
-                    <p><strong>Market Position</strong> — Competitive landscape, market share, key differentiators</p>
+                    <div class="output-icon">🏭</div>
+                    <p><strong>Operational Issues</strong> — Plant closures, supply disruptions, quality recalls, cyber attacks</p>
                 </div>
                 <div class="output-item">
-                    <div class="output-icon">6</div>
-                    <p><strong>ESG Assessment</strong> — Environmental, social, governance scoring and benchmarks</p>
+                    <div class="output-icon">⚖️</div>
+                    <p><strong>Legal & Regulatory</strong> — Lawsuits, regulatory actions, antitrust investigations</p>
                 </div>
                 <div class="output-item">
-                    <div class="output-icon">7</div>
-                    <p><strong>Peer Comparison</strong> — Side-by-side analysis vs. key competitors</p>
-                </div>
-                <div class="output-item">
-                    <div class="output-icon">8</div>
-                    <p><strong>Risk Matrix</strong> — Visual mapping of probability vs. impact</p>
-                </div>
-                <div class="output-item">
-                    <div class="output-icon">9</div>
-                    <p><strong>Recommendation</strong> — Clear go/no-go with supporting rationale</p>
+                    <div class="output-icon">📊</div>
+                    <p><strong>Sentiment Analysis</strong> — Positive, negative, neutral classification with trend tracking</p>
                 </div>
             </div>
         </div>
@@ -256,28 +247,28 @@
 <section class="process">
     <div class="container">
         <div class="section-label">How It Works</div>
-        <h2 class="section-title">From order to delivery in 48 hours</h2>
-        <p class="section-subtitle">A streamlined process designed for procurement teams under pressure. No workshops, no back-and-forth — just professional intelligence delivered fast.</p>
+        <h2 class="section-title">Set up in minutes. Monitor continuously.</h2>
+        <p class="section-subtitle">A simple onboarding process, then we handle the rest. You get intelligence delivered to your inbox without lifting a finger.</p>
         <div class="process-steps">
             <div class="step">
                 <div class="step-num">1</div>
-                <h4>Submit Order</h4>
-                <p>Tell us the supplier name, your industry, and what you need to know. Upload any NDAs or background documents.</p>
+                <h4>Define Targets</h4>
+                <p>Tell us which companies, competitors, or topics to monitor. Set your industry context and alert preferences.</p>
             </div>
             <div class="step">
                 <div class="step-num">2</div>
-                <h4>Research Phase</h4>
-                <p>Our AI + analyst team conducts deep research: financials, news, ESG data, market position, peer analysis.</p>
+                <h4>We Configure</h4>
+                <p>We set up search queries across 30+ sources, configure sentiment analysis, and establish alert thresholds.</p>
             </div>
             <div class="step">
                 <div class="step-num">3</div>
-                <h4>Analysis & Charts</h4>
-                <p>We build the 9-slide deck with risk gauges, financial charts, market position visuals, and ESG scoring.</p>
+                <h4>Daily Monitoring</h4>
+                <p>Our system scans continuously. Relevant articles are captured, categorised, and analysed for significance.</p>
             </div>
             <div class="step">
                 <div class="step-num">4</div>
-                <h4>Delivery</h4>
-                <p>Receive your PowerPoint report within 48 hours. Editable, presentation-ready, with full source citations.</p>
+                <h4>You Receive</h4>
+                <p>Weekly digest (Monitor) or real-time alerts (Alert). Executive summary, key articles, sentiment trend, and recommended actions.</p>
             </div>
         </div>
     </div>
@@ -287,124 +278,117 @@
 <section class="pricing" id="pricing">
     <div class="container">
         <div class="section-label">Pricing</div>
-        <h2 class="section-title">Transparent pricing. No surprises.</h2>
-        <p class="section-subtitle">Choose the turnaround that matches your urgency. All reports include the same 9-slide structure and research depth.</p>
+        <h2 class="section-title">Choose your level of coverage.</h2>
+        <p class="section-subtitle">From passive monitoring to active intelligence. Scale up as your needs grow.</p>
         <div class="pricing-grid">
             <div class="pricing-card">
-                <div class="tier-badge">Standard</div>
-                <h3>Supplier Report</h3>
-                <p class="card-tagline">For planned evaluations</p>
+                <div class="tier-badge">Monitor</div>
+                <h3>Weekly Digest</h3>
+                <p class="card-tagline">For baseline awareness</p>
                 <div class="price-block">
-                    <div class="price">€249</div>
-                    <div class="price-suffix">per supplier</div>
+                    <div class="price">€35</div>
+                    <div class="price-suffix">per month</div>
                 </div>
-                <div class="turnaround">✓ 48-hour delivery</div>
+                <div class="turnaround">✓ Weekly email digest</div>
                 <ul class="features">
-                    <li>9-slide PowerPoint report</li>
-                    <li>Financial health analysis</li>
-                    <li>Risk assessment + matrix</li>
-                    <li>Market position evaluation</li>
-                    <li>ESG scoring</li>
-                    <li>Peer comparison</li>
-                    <li>Full source citations</li>
+                    <li>Up to 3 companies monitored</li>
+                    <li>30+ news sources scanned</li>
+                    <li>Weekly summary report</li>
+                    <li>Sentiment trend tracking</li>
+                    <li>Key article summaries</li>
+                    <li>Basic ESG incident flagging</li>
+                    <li>Monthly coverage report</li>
+                    <li>Email delivery</li>
                 </ul>
-                <a href="order.html" class="card-cta card-cta-outline">Order Standard</a>
+                <a href="order.html" class="card-cta card-cta-outline">Start Monitoring</a>
             </div>
             <div class="pricing-card featured">
                 <div class="popular-tag">Most Popular</div>
-                <div class="tier-badge">Express</div>
-                <h3>Fast-Track Report</h3>
-                <p class="card-tagline">For urgent decisions</p>
+                <div class="tier-badge">Alert</div>
+                <h3>Real-Time Alerts</h3>
+                <p class="card-tagline">For active risk management</p>
                 <div class="price-block">
-                    <div class="price">€349</div>
-                    <div class="price-suffix">per supplier</div>
+                    <div class="price">€105</div>
+                    <div class="price-suffix">per month</div>
                 </div>
-                <div class="turnaround">✓ 24-hour delivery</div>
+                <div class="turnaround">✓ Instant critical alerts</div>
                 <ul class="features">
-                    <li>Everything in Standard</li>
-                    <li>24-hour priority delivery</li>
-                    <li>Preliminary findings call</li>
-                    <li>One revision round included</li>
-                    <li>Direct analyst access</li>
-                    <li>Expedited research queue</li>
-                    <li>Weekend delivery available</li>
+                    <li>Everything in Monitor</li>
+                    <li>Up to 10 companies monitored</li>
+                    <li>Real-time critical alerts</li>
+                    <li>Financial distress signals</li>
+                    <li>Leadership change alerts</li>
+                    <li>ESG incident notifications</li>
+                    <li>Cyber/security alerts</li>
+                    <li>Regulatory action alerts</li>
+                    <li>Daily + weekly reporting</li>
                 </ul>
-                <a href="order.html" class="card-cta card-cta-white">Order Express</a>
+                <a href="order.html" class="card-cta card-cta-white">Get Alerts</a>
             </div>
             <div class="pricing-card">
                 <div class="tier-badge">Enterprise</div>
-                <h3>Multi-Supplier</h3>
+                <h3>Full Intelligence</h3>
                 <p class="card-tagline">For procurement teams</p>
                 <div class="price-block">
                     <div class="price">Custom</div>
-                    <div class="price-suffix">volume pricing</div>
+                    <div class="price-suffix">tailored solution</div>
                 </div>
-                <div class="turnaround">✓ Flexible SLA</div>
+                <div class="turnaround">✓ Unlimited monitoring</div>
                 <ul class="features">
-                    <li>10+ supplier reports</li>
-                    <li>Custom report templates</li>
-                    <li>Batch processing</li>
-                    <li>Dedicated analyst team</li>
-                    <li>API access (coming soon)</li>
-                    <li>Monthly subscriptions</li>
-                    <li>White-label options</li>
+                    <li>Unlimited companies monitored</li>
+                    <li>Custom source list</li>
+                    <li>Stakeholder tracking (executives, board)</li>
+                    <li>Analyst commentary & insights</li>
+                    <li>Weekly intelligence briefings</li>
+                    <li>API access for integrations</li>
+                    <li>White-label reports</li>
+                    <li>Dedicated account manager</li>
+                    <li>Custom alert rules</li>
                 </ul>
-                <a href="mailto:manuforti.as@gmail.com" class="card-cta card-cta-outline">Contact Us</a>
+                <a href="mailto:manuforti.as@gmail.com" class="card-cta card-cta-outline">Contact Sales</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Sample Report Structure -->
+<!-- Sample Report -->
 <section class="sample">
     <div class="container">
         <div class="section-label">Sample Output</div>
-        <h2 class="section-title">What a finished report looks like</h2>
-        <p class="section-subtitle">Every report follows the same professional structure. Here's what you'll receive.</p>
+        <h2 class="section-title">What your monitoring looks like</h2>
+        <p class="section-subtitle">Every report is designed for quick consumption. Know what happened, why it matters, and what to do about it.</p>
         <div class="sample-box">
             <div class="sample-left">
-                <div class="sample-tag">Example: Supplier Evaluation</div>
-                <h3>Oracle Corporation<br>Supplier Analysis Report</h3>
-                <p>A complete evaluation of Oracle for enterprise software and cloud services procurement. Includes financial health check, risk assessment, competitive positioning vs. Microsoft and SAP, and ESG benchmarking.</p>
-                <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.7;">Delivered in 48 hours · Professional styling</p>
+                <div class="sample-tag">Example: Weekly Digest</div>
+                <h3>Vestas Wind Systems<br>Media Monitoring Report</h3>
+                <p>A sample weekly digest for a wind turbine manufacturer. Covers 12 articles from the past 7 days, including an earnings beat, two new order announcements, a minor factory incident, and competitor news from Siemens Gamesa.</p>
+                <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.7;">Sentiment: Positive | 3 alerts flagged | 2 action items</p>
             </div>
             <div class="sample-right">
                 <h4>Report Contents</h4>
-                <div class="slide-item">
-                    <div class="slide-num">1</div>
-                    <span>Executive Summary & Recommendation</span>
+                <div class="deliverable-item">
+                    <span class="deliverable-icon">📋</span>
+                    <span>Executive summary with key takeaways</span>
                 </div>
-                <div class="slide-item">
-                    <div class="slide-num">2</div>
-                    <span>Company Overview & Ownership</span>
+                <div class="deliverable-item">
+                    <span class="deliverable-icon">📈</span>
+                    <span>Sentiment trend chart (4-week view)</span>
                 </div>
-                <div class="slide-item">
-                    <div class="slide-num">3</div>
-                    <span>Financial Health Dashboard</span>
+                <div class="deliverable-item">
+                    <span class="deliverable-icon">🚨</span>
+                    <span>Critical alerts requiring action</span>
                 </div>
-                <div class="slide-item">
-                    <div class="slide-num">4</div>
-                    <span>Risk Assessment Gauge</span>
+                <div class="deliverable-item">
+                    <span class="deliverable-icon">📰</span>
+                    <span>Top 5 articles with summaries</span>
                 </div>
-                <div class="slide-item">
-                    <div class="slide-num">5</div>
-                    <span>Market Position Analysis</span>
+                <div class="deliverable-item">
+                    <span class="deliverable-icon">🏭</span>
+                    <span>Competitor intelligence highlights</span>
                 </div>
-                <div class="slide-item">
-                    <div class="slide-num">6</div>
-                    <span>ESG Assessment</span>
-                </div>
-                <div class="slide-item">
-                    <div class="slide-num">7</div>
-                    <span>Peer Risk Comparison</span>
-                </div>
-                <div class="slide-item">
-                    <div class="slide-num">8</div>
-                    <span>Risk Probability Matrix</span>
-                </div>
-                <div class="slide-item">
-                    <div class="slide-num">9</div>
-                    <span>Final Recommendation</span>
+                <div class="deliverable-item">
+                    <span class="deliverable-icon">✅</span>
+                    <span>Recommended actions</span>
                 </div>
             </div>
         </div>
@@ -414,11 +398,11 @@
 <!-- CTA -->
 <section class="cta">
     <div class="container">
-        <h2>Ready to evaluate your supplier?</h2>
-        <p>Get a professional supplier analysis report in 48 hours. Know who you're doing business with before you sign.</p>
+        <h2>Don't be the last to know.</h2>
+        <p>Supplier problems, competitive moves, and market shifts show up in the news first. Start monitoring today and stay ahead of the curve.</p>
         <div class="cta-buttons">
-            <a href="order.html" class="btn-primary">Order Your Report</a>
-            <a href="mailto:manuforti.as@gmail.com" class="btn-secondary">Ask a Question</a>
+            <a href="order.html" class="btn-primary">Start Monitoring — €35/mo</a>
+            <a href="mailto:manuforti.as@gmail.com" class="btn-secondary">Talk to Us</a>
         </div>
     </div>
 </section>
@@ -426,7 +410,7 @@
 <!-- Footer -->
 <footer>
     <div class="container">
-        <p>&copy; 2026 Manu Forti Intelligence. All rights reserved. | <a href="index.html">Home</a> · <a href="supplier-analysis.html">Supplier Reports</a> · <a href="category-strategy.html">Category Strategy</a> · <a href="about.html">About Us</a></p>
+        <p>&copy; 2026 Manu Forti Intelligence. All rights reserved. | <a href="index.html">Home</a> · <a href="supplier-analysis.html">Supplier Reports</a> · <a href="category-strategy.html">Category Strategy</a> · <a href="media-monitoring.html">Media Monitoring</a> · <a href="about.html">About Us</a></p>
     </div>
 </footer>
 
