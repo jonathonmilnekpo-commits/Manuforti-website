@@ -273,7 +273,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="supplierName">Supplier Name <span class="required">*</span></label>
-                            <input type="text" id="supplierName" name="supplierName" required placeholder="e.g., Nel ASA">
+                            <input type="text" id="supplierName" name="supplierName" required placeholder="e.g., Oracle Corporation">
                         </div>
                         <div class="form-group">
                             <label for="supplierWebsite">Supplier Website</label>
@@ -288,24 +288,8 @@
 
                 <!-- Payment Method -->
                 <div class="form-section">
-                    <h3 class="section-title">💳 Payment Method</h3>
-                    <div class="payment-options">
-                        <label class="payment-option" onclick="selectPayment('vipps')">
-                            <input type="radio" name="payment" value="vipps" required>
-                            <div class="payment-icon">📱</div>
-                            <div class="payment-name">Vipps</div>
-                        </label>
-                        <label class="payment-option" onclick="selectPayment('stripe')">
-                            <input type="radio" name="payment" value="stripe" required>
-                            <div class="payment-icon">💳</div>
-                            <div class="payment-name">Card</div>
-                        </label>
-                        <label class="payment-option" onclick="selectPayment('invoice')">
-                            <input type="radio" name="payment" value="invoice" required>
-                            <div class="payment-icon">📄</div>
-                            <div class="payment-name">Invoice</div>
-                        </label>
-                    </div>
+                    <h3 class="section-title">💳 Payment</h3>
+                    <p style="color: var(--gray); font-size: 0.95rem;">We'll send you an invoice within 24 hours. Payment via bank transfer or card link.</p>
                 </div>
 
                 <!-- Order Summary -->
@@ -317,16 +301,17 @@
 
                 <!-- Submit -->
                 <div class="submit-section">
-                    <button type="submit" class="submit-btn" id="submitBtn">Complete Order</button>
+                    <button type="submit" class="submit-btn" id="submitBtn">Submit Order via Email</button>
                 </div>
             </form>
 
             <!-- Success Message -->
             <div id="successMessage" class="form-card success-message">
                 <div class="success-icon">✅</div>
-                <h2>Order Received!</h2>
-                <p>Your request has been submitted successfully.</p>
-                <div class="order-reference" id="orderReference">MF-2026-XXXXX</div>
+                <h2>Order Submitted!</h2>
+                <p>Your email client should have opened with your order details. Simply send the email to complete your order.</p>
+                <p style="color: var(--gray); margin-top: 1rem;">We'll send you an invoice within 24 hours.</p>
+                <div class="order-reference" id="orderReference">-</div>
                 <a href="index.html" class="submit-btn" style="display: inline-block; text-decoration: none; margin-top: 1rem;">Return to Home</a>
             </div>
         </div>
@@ -398,126 +383,70 @@
             document.getElementById('summaryTotal').textContent = '€' + selectedPrice;
         }
 
-        // API Configuration
-        const API_BASE_URL = 'https://manuforti-api.railway.app/api';
-        
-        document.getElementById('orderForm').addEventListener('submit', async function(e) {
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Processing...';
+            // Build order details
+            const customerName = document.getElementById('fullName').value;
+            const customerEmail = document.getElementById('email').value;
+            const companyName = document.getElementById('companyName').value;
+            const supplierName = document.getElementById('supplierName').value;
             
-            // Build order payload
-            const formData = {
-                product_type: selectedProduct,
-                tier: selectedTier,
-                monitoring_plan: selectedMonitoring,
-                price: selectedPrice,
-                payment_method: selectedPayment,
-                customer_name: document.getElementById('fullName').value,
-                customer_email: document.getElementById('email').value,
-                customer_phone: document.getElementById('phone').value || null,
-                job_title: document.getElementById('jobTitle').value || null,
-                company_name: document.getElementById('companyName').value,
-                industry: document.getElementById('industry').value,
-                country: document.getElementById('country').value,
-                company_number: document.getElementById('companyNumber').value || null,
-                supplier_name: document.getElementById('supplierName').value,
-                supplier_website: document.getElementById('supplierWebsite').value || null,
-                analysis_context: document.getElementById('analysisContext').value || null,
-                sla_hours: selectedProduct === 'category_strategy' ? 168 : (selectedTier === 'standard' ? 24 : 12)
-            };
-            
-            // Category strategy specific fields
-            if (selectedProduct === 'category_strategy') {
-                formData.category_name = document.getElementById('categoryName').value;
-                formData.annual_spend = document.getElementById('annualSpend').value;
-                formData.spend_currency = document.getElementById('spendCurrency').value;
-                formData.timeline_constraint = document.getElementById('timelineConstraint').value || null;
-                formData.incumbent_suppliers = document.getElementById('incumbentSuppliers').value;
-                formData.key_pain_points = document.getElementById('keyPainPoints').value;
-                formData.strategic_priorities = document.getElementById('strategicPriorities').value;
+            // Determine product name
+            let productName = '';
+            if (selectedProduct === 'report' && selectedTier) {
+                productName = selectedTier === 'standard' ? 'Standard Report (€249)' : 'Premium Report (€349)';
+            } else if (selectedProduct === 'monitoring' && selectedMonitoring) {
+                productName = selectedMonitoring === 'monitor' ? 'Media Monitoring - Monitor (€35/mo)' : 'Media Monitoring - Alert (€105/mo)';
+            } else if (selectedProduct === 'category_strategy') {
+                productName = 'Category Strategy (€3,999)';
             }
             
-            try {
-                // Create order
-                const response = await fetch(`${API_BASE_URL}/orders`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-                
-                if (!response.ok) {
-                    throw new Error('Failed to create order');
-                }
-                
-                const order = await response.json();
-                
-                // Handle payment based on method
-                if (selectedPayment === 'stripe') {
-                    // Get Stripe payment intent
-                    const paymentRes = await fetch(`${API_BASE_URL}/payments/stripe/create-intent`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            order_id: order.id,
-                            amount: selectedPrice * 100, // Convert to cents
-                            currency: 'eur'
-                        })
-                    });
-                    
-                    if (!paymentRes.ok) {
-                        throw new Error('Failed to create payment intent');
-                    }
-                    
-                    const paymentData = await paymentRes.json();
-                    
-                    // Redirect to payment page
-                    window.location.href = `payment.html?client_secret=${paymentData.client_secret}&order_id=${order.id}`;
-                    return;
-                    
-                } else if (selectedPayment === 'vipps') {
-                    // Create Vipps payment
-                    const paymentRes = await fetch(`${API_BASE_URL}/payments/vipps/create`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            order_id: order.id,
-                            amount: selectedPrice,
-                            currency: 'EUR'
-                        })
-                    });
-                    
-                    if (!paymentRes.ok) {
-                        throw new Error('Failed to create Vipps payment');
-                    }
-                    
-                    const paymentData = await paymentRes.json();
-                    
-                    // Redirect to Vipps
-                    window.location.href = paymentData.vipps_url;
-                    return;
-                    
-                } else if (selectedPayment === 'invoice') {
-                    // Invoice payment - order created, waiting for manual processing
-                    showSuccess(order);
-                }
-                
-            } catch (error) {
-                console.error('Order error:', error);
-                alert('Sorry, there was an error processing your order. Please try again or contact support@manuforti.com');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Complete Order';
-            }
-        });
-        
-        function showSuccess(order) {
+            // Build email body
+            const emailBody = `NEW ORDER - Manu Forti Intelligence
+
+PRODUCT
+${productName}
+
+CUSTOMER
+Name: ${customerName}
+Email: ${customerEmail}
+Phone: ${document.getElementById('phone').value || 'Not provided'}
+Job Title: ${document.getElementById('jobTitle').value || 'Not provided'}
+
+COMPANY
+Company: ${companyName}
+Industry: ${document.getElementById('industry').value}
+Country: ${document.getElementById('country').value}
+Company Number/VAT: ${document.getElementById('companyNumber').value || 'Not provided'}
+
+${selectedProduct !== 'category_strategy' ? `SUPPLIER
+Supplier Name: ${supplierName}
+Supplier Website: ${document.getElementById('supplierWebsite').value || 'Not provided'}
+Analysis Context: ${document.getElementById('analysisContext').value || 'Not provided'}` : ''}
+
+${selectedProduct === 'category_strategy' ? `CATEGORY STRATEGY DETAILS
+Category: ${document.getElementById('categoryName')?.value || 'Not provided'}
+Annual Spend: ${document.getElementById('annualSpend')?.value || 'Not provided'} ${document.getElementById('spendCurrency')?.value || ''}
+Timeline Constraint: ${document.getElementById('timelineConstraint')?.value || 'Not provided'}
+Incumbent Suppliers: ${document.getElementById('incumbentSuppliers')?.value || 'Not provided'}
+Key Pain Points: ${document.getElementById('keyPainPoints')?.value || 'Not provided'}
+Strategic Priorities: ${document.getElementById('strategicPriorities')?.value || 'Not provided'}` : ''}
+
+---
+Order submitted via manuforti.no
+`;
+            
+            // Open email client
+            const mailtoLink = `mailto:manuforti.as@gmail.com?subject=NEW ORDER - ${productName} - ${customerName}&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoLink;
+            
+            // Show success message
             document.getElementById('orderForm').style.display = 'none';
             document.querySelector('.page-header').style.display = 'none';
-            document.getElementById('orderReference').textContent = order.id;
+            document.getElementById('orderReference').textContent = 'Email Sent';
             document.getElementById('successMessage').classList.add('show');
-        }
+        });
     </script>
 </body>
 </html>
