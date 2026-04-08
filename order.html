@@ -261,9 +261,13 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="companyNumber">Company Number / VAT</label>
-                            <input type="text" id="companyNumber" name="companyNumber" placeholder="e.g., 123456789">
+                            <label for="companyNumber">Company Number / VAT <span class="required">*</span></label>
+                            <input type="text" id="companyNumber" name="companyNumber" required placeholder="e.g., NO123456789">
                         </div>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="billingAddress">Billing Address <span class="required">*</span></label>
+                        <textarea id="billingAddress" name="billingAddress" required rows="3" placeholder="Full billing address for invoice&#10;e.g.,&#10;Storgata 1&#10;0155 Oslo&#10;Norway"></textarea>
                     </div>
                 </div>
 
@@ -418,7 +422,8 @@ COMPANY
 Company: ${companyName}
 Industry: ${document.getElementById('industry').value}
 Country: ${document.getElementById('country').value}
-Company Number/VAT: ${document.getElementById('companyNumber').value || 'Not provided'}
+Company Number/VAT: ${document.getElementById('companyNumber').value}
+Billing Address: ${document.getElementById('billingAddress').value}
 
 ${selectedProduct !== 'category_strategy' ? `SUPPLIER
 Supplier Name: ${supplierName}
