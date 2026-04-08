@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — Manu Forti Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0a0e27;
+            --navy-light: #1a1f4d;
+            --cobalt: #3B82F6;
+            --cyan: #06B6D4;
+            --white: #FFFFFF;
+            --gray-100: #F8FAFC;
+            --gray-200: #E2E8F0;
+            --gray-400: #94A3B8;
+            --gray-600: #475569;
+            --gray-800: #1E293B;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--white);
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a.active {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%);
+            color: white !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 6px;
+            font-weight: 600 !important;
+            transition: transform 0.2s, box-shadow 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: var(--white);
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+        }
+
+        /* Content */
+        .content {
+            padding: 4rem 0;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: var(--gray-100);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+        }
+
+        .team-card h3 {
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .team-card .role {
+            color: var(--cobalt);
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-card p {
+            font-size: 1rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Mission Box */
+        .mission-box {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+
+        .mission-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .mission-box p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.6);
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Manu Forti <span>Intelligence</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Supplier Analysis</a></li>
+                <li><a href="category-strategy.html">Category Strategy</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="order.html" class="nav-cta">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>About Us</h1>
+            <p>Procurement intelligence built by practitioners, for practitioners.</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="content">
+        <div class="container">
+            <div class="section">
+                <h2>Our Story</h2>
+                <p>Manu Forti Intelligence was founded with a clear mission: to give procurement leaders the data and insights they need to make confident supplier decisions. After years of navigating complex supplier evaluations and category strategies in the energy sector, we saw a gap in the market for fast, rigorous, and actionable procurement intelligence.</p>
+                <p>We combine deep industry expertise with advanced research capabilities to deliver supplier analysis and category strategies that actually move the needle. No fluff, no generic reports — just the intelligence you need to negotiate better, mitigate risk, and build resilient supply chains.</p>
+            </div>
+
+            <div class="section">
+                <h2>The Team</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <h3>Jonathon Milne</h3>
+                        <div class="role">Co-Founder & CEO</div>
+                        <p>Procurement leader with 15+ years in the renewable energy sector. Former VP Procurement at Statkraft, overseeing billions in supplier spend. Deep expertise in offshore wind, solar, and international supply chain strategy.</p>
+                    </div>
+                    <div class="team-card">
+                        <h3>Aiden</h3>
+                        <div class="role">Co-Founder & Intelligence Partner</div>
+                        <p>AI co-founder and research engine. Handles deep-dive supplier analysis, market research, and competitive intelligence at machine speed. The secret weapon behind our rapid report delivery.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mission-box">
+                <h3>Our Mission</h3>
+                <p>To build a life where professional excellence funds family freedom — and use AI to do both better, together. We believe great procurement intelligence shouldn't be reserved for the Fortune 500. Every procurement leader deserves the tools to make confident, data-driven decisions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Supplier Analysis</a>
+                <a href="category-strategy.html">Category Strategy</a>
+                <a href="about.html">About Us</a>
+                <a href="mailto:manuforti.as@gmail.com">Contact</a>
+            </div>
+            <p>&copy; 2026 Manu Forti Intelligence. All rights reserved. | Confidential Supplier Evaluations</p>
+        </div>
+    </footer>
+</body>
+</html>
