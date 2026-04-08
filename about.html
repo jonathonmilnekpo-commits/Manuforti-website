@@ -164,6 +164,17 @@
             padding: 2rem;
             border-radius: 12px;
             border: 1px solid var(--gray-200);
+            text-align: center;
+        }
+
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 3px solid var(--cobalt);
+            background: var(--gray-200);
         }
 
         .team-card h3 {
@@ -184,27 +195,7 @@
             font-size: 1rem;
             color: var(--gray-600);
             line-height: 1.6;
-        }
-
-        /* Mission Box */
-        .mission-box {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-            color: var(--white);
-            padding: 3rem;
-            border-radius: 12px;
-            margin-top: 2rem;
-        }
-
-        .mission-box h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .mission-box p {
-            color: rgba(255,255,255,0.9);
-            font-size: 1.1rem;
-            line-height: 1.7;
+            text-align: left;
         }
 
         /* Footer */
@@ -289,16 +280,19 @@
                 <h2>The Team</h2>
                 <div class="team-grid">
                     <div class="team-card">
+                        <img src="heather.jpg" alt="Heather Milne" class="team-photo" onerror="this.style.display='none'">
                         <h3>Heather Milne</h3>
                         <div class="role">CEO & Co-Founder</div>
                         <p>30+ years of procurement experience across Marathon Oil, Occidental Petroleum, and Xcite Energy. Deep expertise in upstream oil & gas supply chain, contract negotiation, and supplier relationship management at the highest level.</p>
                     </div>
                     <div class="team-card">
+                        <img src="derek.jpg" alt="Derek Milne" class="team-photo" onerror="this.style.display='none'">
                         <h3>Derek Milne</h3>
                         <div class="role">Senior Advisor</div>
                         <p>30+ years of procurement experience spanning Total, Elf, Talisman, Wood Group, and Occidental. Extensive background in major capital projects, drilling services, and international procurement operations across multiple continents.</p>
                     </div>
                     <div class="team-card">
+                        <img src="jonathon.jpg" alt="Jonathon Milne" class="team-photo" onerror="this.style.display='none'">
                         <h3>Jonathon Milne</h3>
                         <div class="role">Co-Founder & Senior Advisor</div>
                         <p>15 years of procurement experience from Shell, BG Group, Aker Energy, Freyr Battery, and most recently Statkraft. Former VP Procurement overseeing billions in supplier spend. Deep expertise in offshore wind, solar, battery manufacturing, and energy transition supply chains.</p>
@@ -306,10 +300,6 @@
                 </div>
             </div>
 
-            <div class="mission-box">
-                <h3>Our Mission</h3>
-                <p>To build a life where professional excellence funds family freedom — and use AI to do both better, together. We believe great procurement intelligence shouldn't be reserved for the Fortune 500. Every procurement leader deserves the tools to make confident, data-driven decisions.</p>
-            </div>
         </div>
     </section>
 
