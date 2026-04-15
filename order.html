@@ -429,10 +429,11 @@
                     ? 'http://localhost:3000/api/orders' 
                     : 'https://manuforti-orders.manuforti.workers.dev';
                 
-                const response = await fetch(API_URL, {
+                const response = await fetch(API_URL + '?t=' + Date.now(), {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Cache-Control': 'no-cache'
                     },
                     body: JSON.stringify(payload)
                 });
