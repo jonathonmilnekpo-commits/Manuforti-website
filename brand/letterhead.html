@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manu Forti — Letterhead</title>
+  <style>
+    @page { margin: 18mm 18mm 22mm; }
+    :root {
+      --ink: #04060f;
+      --cobalt: #4c7bf5;
+      --ice: #8ec8ff;
+      --text: #1a1f2e;
+      --muted: #5b657a;
+      --line: #d8deea;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+      color: var(--text);
+      font-size: 11pt;
+      line-height: 1.5;
+      background: #fff;
+    }
+    .sheet { max-width: 210mm; margin: 0 auto; min-height: 297mm; padding: 18mm; position: relative; }
+    header.doc-head {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding-bottom: 14pt; border-bottom: 1.5pt solid var(--cobalt); margin-bottom: 22pt;
+    }
+    .mark { display: flex; align-items: center; gap: 10pt; }
+    .mono {
+      width: 28pt; height: 28pt; border-radius: 7pt; background: var(--ink);
+      color: var(--ice); font-weight: 700; font-size: 11pt; letter-spacing: -0.04em;
+      display: grid; place-items: center;
+    }
+    .word { font-size: 16pt; font-weight: 600; letter-spacing: -0.03em; }
+    .word .ice { color: var(--ink); }
+    .word .cobalt { color: var(--cobalt); margin-left: 0.28em; }
+    .meta { text-align: right; font-size: 8.5pt; color: var(--muted); line-height: 1.45; }
+    .meta a { color: var(--cobalt); text-decoration: none; }
+    .doc-title { font-size: 14pt; font-weight: 650; letter-spacing: -0.02em; margin-bottom: 4pt; }
+    .doc-sub { font-size: 9.5pt; color: var(--muted); margin-bottom: 16pt; }
+    .body { min-height: 160mm; }
+    .body p { margin-bottom: 9pt; }
+    footer.doc-foot {
+      position: absolute; left: 18mm; right: 18mm; bottom: 14mm;
+      border-top: 1pt solid var(--line); padding-top: 8pt;
+      display: flex; justify-content: space-between; font-size: 8pt; color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <header class="doc-head">
+      <div class="mark">
+        <div class="mono" aria-hidden="true">MF</div>
+        <div class="word"><span class="ice">Manu</span><span class="cobalt">Forti</span></div>
+      </div>
+      <div class="meta">
+        Oslo, Norway<br>
+        <a href="mailto:jonathon.milne@manuforti.no">jonathon.milne@manuforti.no</a><br>
+        manuforti.no
+      </div>
+    </header>
+    <p class="doc-title">[Document title]</p>
+    <p class="doc-sub">Manu Forti · confidential · [date]</p>
+    <div class="body">
+      <p>Paste locked Product / Engine copy here.</p>
+    </div>
+    <footer class="doc-foot">
+      <span>Manu Forti · Agent Stack Install</span>
+      <span>jonathon.milne@manuforti.no</span>
+    </footer>
+  </div>
+</body>
+</html>

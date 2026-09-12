@@ -6,6 +6,8 @@
   <title>Manu Forti — Agent Stack Install</title>
   <meta name="description" content="Done-with-you Agent Stack Install for calendar, inbox decisions, and task routing — plus 90-day keep-alive. Price on request.">
   <meta name="theme-color" content="#04060f">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -90,15 +92,15 @@
     }
 
     .logo {
-      font-weight: 600;
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
-      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      line-height: 0;
     }
 
-    .logo span {
-      color: var(--cyan);
-      font-weight: 500;
+    .logo svg {
+      display: block;
+      height: 1.35rem;
+      width: auto;
     }
 
     .btn {
@@ -280,7 +282,12 @@
 
   <header>
     <div class="header-inner">
-      <a class="logo" href="/">Manu Forti</a>
+      <a class="logo" href="/" aria-label="Manu Forti">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 48" height="22" role="img" aria-hidden="true">
+          <text x="0" y="34" font-family="Inter, system-ui, sans-serif" font-size="32" font-weight="600" letter-spacing="-0.03em" fill="#F3F5FA">Manu</text>
+          <text x="112" y="34" font-family="Inter, system-ui, sans-serif" font-size="32" font-weight="600" letter-spacing="-0.03em" fill="#4C7BF5">Forti</text>
+        </svg>
+      </a>
       <a class="btn btn-primary btn-header" href="mailto:jonathon.milne@manuforti.no?subject=Agent%20Stack%20Install%20discovery">Book discovery</a>
     </div>
   </header>
