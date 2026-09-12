@@ -1,410 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us — Manu Forti Intelligence</title>
-    <meta name="description" content="Procurement intelligence built by practitioners with 80+ years of combined experience. Meet the team behind Manu Forti.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --navy: #0a0e27;
-            --navy-light: #1a1f4d;
-            --cobalt: #3B82F6;
-            --cyan: #06B6D4;
-            --white: #FFFFFF;
-            --gray-100: #F8FAFC;
-            --gray-200: #E2E8F0;
-            --gray-400: #94A3B8;
-            --gray-600: #475569;
-            --gray-800: #1E293B;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--gray-800);
-            background: var(--white);
-        }
-
-        /* Header */
-        header {
-            background: rgba(10, 14, 39, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--white);
-            text-decoration: none;
-            letter-spacing: -0.02em;
-        }
-
-        .logo span {
-            background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-        }
-
-        .mobile-menu-btn span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: white;
-            margin: 5px 0;
-            transition: 0.3s;
-        }
-
-        .mobile-menu-btn.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .mobile-menu-btn.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-btn.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        .nav-links a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--white);
-        }
-
-        .nav-links a.active {
-            color: var(--white);
-            font-weight: 600;
-        }
-
-        .nav-cta {
-            background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%);
-            color: white !important;
-            padding: 0.6rem 1.4rem;
-            border-radius: 6px;
-            font-weight: 600 !important;
-            transition: transform 0.2s, box-shadow 0.2s !important;
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-        }
-
-        /* Page Header */
-        .page-header {
-            padding: 8rem 0 4rem;
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-            color: var(--white);
-        }
-
-        .page-header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .page-header p {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.8);
-            max-width: 600px;
-        }
-
-        /* Content */
-        .content {
-            padding: 4rem 0;
-        }
-
-        .section {
-            margin-bottom: 4rem;
-        }
-
-        .section h2 {
-            font-size: 2rem;
-            color: var(--navy);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .section p {
-            font-size: 1.1rem;
-            color: var(--gray-600);
-            margin-bottom: 1rem;
-            line-height: 1.7;
-        }
-
-        /* Team Grid */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .team-card {
-            background: var(--gray-100);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--gray-200);
-            text-align: center;
-        }
-
-        .team-photo {
-            width: 156px;
-            height: 156px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 1.5rem;
-            border: 3px solid var(--cobalt);
-            background: var(--gray-200);
-        }
-
-        .team-card h3 {
-            font-size: 1.3rem;
-            color: var(--navy);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .team-card .role {
-            color: var(--cobalt);
-            font-weight: 500;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-
-        .team-card p {
-            font-size: 1rem;
-            color: var(--gray-600);
-            line-height: 1.6;
-            text-align: left;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--navy);
-            color: rgba(255,255,255,0.6);
-            padding: 3rem 0 2rem;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--white);
-        }
-
-        footer p {
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                max-width: 300px;
-                height: 100vh;
-                background: var(--navy);
-                flex-direction: column;
-                padding: 5rem 2rem 2rem;
-                gap: 1.5rem;
-                transition: right 0.3s ease;
-                z-index: 999;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links a {
-                font-size: 1.1rem;
-            }
-
-            .nav-cta {
-                margin-top: 1rem;
-                text-align: center;
-            }
-
-            .page-header h1 {
-                font-size: 2rem;
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Manu Forti</title>
+  <meta name="description" content="Jonathon Milne — procurement VP and multi-agent operator. Manu Forti installs Chief of Staff agent stacks.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #05070f; --line: rgba(148,163,184,0.14); --text: #e8eef8; --muted: #94a3b8;
+      --cobalt: #3b82f6; --cyan: #22d3ee; --panel: rgba(14,22,42,0.72);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.65; }
+    .wrap { width: min(800px, calc(100% - 2.5rem)); margin: 0 auto; }
+    header { border-bottom: 1px solid var(--line); backdrop-filter: blur(16px); background: rgba(5,7,15,0.72); position: sticky; top: 0; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+    .logo { font-weight: 700; text-decoration: none; letter-spacing: -0.03em; }
+    .logo span { background: linear-gradient(135deg, var(--cobalt), var(--cyan)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    nav a { color: var(--muted); text-decoration: none; font-weight: 500; }
+    main { padding: 5rem 0 4rem; }
+    .kicker { color: var(--cyan); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    h1 { font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.04em; margin: 0.6rem 0 1.4rem; }
+    .portrait { width: 132px; height: 132px; border-radius: 50%; object-fit: cover; border: 3px solid var(--cobalt); margin-bottom: 1.5rem; }
+    p { color: var(--muted); margin-bottom: 1rem; font-size: 1.05rem; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 1.4rem; margin-top: 2rem; }
+    .btn { display: inline-flex; margin-top: 1.5rem; text-decoration: none; font-weight: 600; border-radius: 999px; padding: 0.85rem 1.3rem; background: linear-gradient(135deg, var(--cobalt), var(--cyan)); color: #041018; }
+    footer { border-top: 1px solid var(--line); padding: 2rem 0; color: var(--muted); font-size: 0.9rem; }
+    footer a { color: #cbd5e1; text-decoration: none; }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo">Manu Forti <span>Intelligence</span></a>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links" id="mobileNav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="supplier-analysis.html">Supplier Analysis</a></li>
-                <li><a href="category-strategy.html">Category Strategy</a></li>
-                <li><a href="media-monitoring.html">Media Monitoring</a></li>
-                <li><a href="about.html" class="active">About</a></li>
-                <li><a href="order.html" class="nav-cta">Order Report</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>About Us</h1>
-            <p>Procurement intelligence built by practitioners, for practitioners.</p>
-        </div>
-    </section>
-
-    <!-- Content -->
-    <section class="content">
-        <div class="container">
-            <div class="section">
-                <h2>Our Story</h2>
-                <p>Manu Forti Intelligence was founded with a clear mission: to give procurement leaders the data and insights they need to make confident supplier decisions. After years of navigating complex supplier evaluations and category strategies in the energy sector, we saw a gap in the market for fast, rigorous, and actionable procurement intelligence.</p>
-                <p>We combine deep industry expertise with advanced research capabilities to deliver supplier analysis and category strategies that actually move the needle. No fluff, no generic reports — just the intelligence you need to negotiate better, mitigate risk, and build resilient supply chains.</p>
-            </div>
-
-            <div class="section">
-                <h2>The Team</h2>
-                <div class="team-grid">
-                    <div class="team-card">
-                        <img src="heather.jpg" alt="Heather Milne" class="team-photo" onerror="this.style.display='none'">
-                        <h3>Heather Milne</h3>
-                        <div class="role">CEO & Co-Founder</div>
-                        <p>30+ years of procurement experience across Marathon Oil, Occidental Petroleum, and Xcite Energy. Deep expertise in upstream oil & gas supply chain, contract negotiation, and supplier relationship management at the highest level.</p>
-                    </div>
-                    <div class="team-card">
-                        <img src="derek.jpg?v=2" alt="Derek Milne" class="team-photo" onerror="console.error('Image failed to load:', this.src); this.style.display='none'">
-                        <h3>Derek Milne</h3>
-                        <div class="role">Senior Advisor</div>
-                        <p>30+ years of procurement experience spanning Total, Elf, Talisman, Wood Group, and Occidental. Extensive background in major capital projects, drilling services, and international procurement operations across multiple continents.</p>
-                    </div>
-                    <div class="team-card">
-                        <img src="jonathon.jpg" alt="Jonathon Milne" class="team-photo" onerror="this.style.display='none'">
-                        <h3>Jonathon Milne</h3>
-                        <div class="role">Advisor</div>
-                        <p>15 years of procurement experience from Shell, BG Group, Aker Energy, and Freyr Battery. VP Procurement with deep expertise in wind, solar, battery manufacturing, oil, gas and energy transition supply chains.</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="index.html">Supplier Analysis</a>
-                <a href="category-strategy.html">Category Strategy</a>
-                <a href="about.html">About Us</a>
-                <a href="mailto:jonathon.milne@manuforti.no">Contact</a>
-            </div>
-            <p>&copy; 2026 Manu Forti Intelligence. All rights reserved. | Confidential Supplier Evaluations</p>
-        </div>
-    </footer>
-
-    <script>
-        function toggleMobileMenu() {
-            const nav = document.getElementById('mobileNav');
-            const btn = document.querySelector('.mobile-menu-btn');
-            nav.classList.toggle('active');
-            btn.classList.toggle('active');
-        }
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('mobileNav').classList.remove('active');
-                document.querySelector('.mobile-menu-btn').classList.remove('active');
-            });
-        });
-
-        document.addEventListener('click', (e) => {
-            const nav = document.getElementById('mobileNav');
-            const btn = document.querySelector('.mobile-menu-btn');
-            if (!nav.contains(e.target) && !btn.contains(e.target)) {
-                nav.classList.remove('active');
-                btn.classList.remove('active');
-            }
-        });
-    </script>
+  <header>
+    <nav class="wrap">
+      <a class="logo" href="index.html">Manu <span>Forti</span></a>
+      <a href="index.html">Home</a>
+    </nav>
+  </header>
+  <main>
+    <div class="wrap">
+      <p class="kicker">About</p>
+      <h1>Jonathon Milne</h1>
+      <img class="portrait" src="jonathon.jpg" alt="Jonathon Milne" onerror="this.style.display='none'">
+      <p>Procurement VP and operator. Jonathon builds multi-agent Chief of Staff stacks for founders, fractional operators, and lean teams who need leverage — not another chatbot.</p>
+      <p>Manu Forti is the studio behind Agent Stack Install: a done-with-you install plus 90-day keep-alive. Discovery first. Price on request.</p>
+      <p>Background spans senior procurement leadership across energy and industrial supply chains. The work here is independent ops design — not employer playbooks, and not a claim on anyone else's IP.</p>
+      <div class="card">
+        <p>Primary offer: Agent Stack Install + 90-day keep-alive. CoS Starter pack coming under Manu Forti.</p>
+      </div>
+      <a class="btn" href="mailto:jonathon.milne@manuforti.no?subject=Agent%20Stack%20Install%20discovery">Request discovery</a>
+    </div>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>© 2026 Manu Forti · <a href="mailto:jonathon.milne@manuforti.no">jonathon.milne@manuforti.no</a></p>
+    </div>
+  </footer>
 </body>
 </html>

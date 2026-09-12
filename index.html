@@ -1,154 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manu Forti Intelligence — Supplier Analysis Reports in 24 Hours</title>
-    <meta name="description" content="Professional supplier intelligence delivered in 24 hours. Financial health, risk assessment, and ESG scoring for procurement teams. €249 per report.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --navy: #0a0e27; --navy-light: #1a1f4d; --cobalt: #3B82F6; --cyan: #06B6D4; --white: #FFFFFF; --gray-100: #F8FAFC; --gray-200: #E2E8F0; --gray-400: #94A3B8; --gray-600: #475569; --gray-800: #1E293B; --green: #10B981; }
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: var(--gray-800); background: var(--white); }
-        header { background: rgba(10, 14, 39, 0.95); backdrop-filter: blur(10px); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.4rem; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: -0.02em; }
-        .logo span { background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
-        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; z-index: 1001; }
-        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: white; margin: 5px 0; transition: 0.3s; }
-        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
-        .nav-cta { background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%); color: white !important; padding: 0.6rem 1.4rem; border-radius: 6px; font-weight: 600 !important; }
-        .hero { padding-top: 72px; background: #0a0e27; }
-        .hero-image-wrap img { width: 100%; height: auto; display: block; }
-        .hero-cta-bar { background: #0a0e27; padding: 2.5rem 2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
-        .cta-button { display: inline-block; background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%); color: var(--white); padding: 1rem 2.5rem; font-weight: 600; text-decoration: none; border-radius: 8px; }
-        .cta-button.secondary { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.6); }
-        .value-prop { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e3a8a 100%); padding: 6rem 0; color: var(--white); }
-        .value-prop h2 { font-size: 2.75rem; font-weight: 600; margin-bottom: 2rem; }
-        .value-prop p { font-size: 1.35rem; color: rgba(255,255,255,0.85); margin-bottom: 2rem; }
-        .services-list { list-style: none; }
-        .services-list li { font-size: 1.1rem; padding: 0.5rem 0; }
-        .services-list li a { color: rgba(255,255,255,0.9); text-decoration: none; }
-        .features { padding: 6rem 0; background: var(--gray-100); }
-        .section-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
-        .section-header h2 { font-size: 2.5rem; color: var(--navy); margin-bottom: 1rem; }
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
-        .feature-card { background: var(--white); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--gray-200); }
-        .feature-card h3 { color: var(--navy); font-size: 1.25rem; margin-bottom: 0.75rem; }
-        .pricing { padding: 6rem 0; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
-        .pricing-card { background: var(--gray-100); padding: 2.5rem; border-radius: 12px; }
-        .pricing-card.featured { background: var(--navy); color: var(--white); }
-        .price { font-size: 3rem; font-weight: 800; color: var(--navy); }
-        .pricing-card.featured .price { color: var(--white); }
-        .how-it-works { padding: 6rem 0; background: var(--gray-100); }
-        .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
-        .cta-section { padding: 6rem 0; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: var(--white); text-align: center; }
-        footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 3rem 0; text-align: center; }
-        .footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 1rem; }
-        @media (max-width: 768px) { .steps { grid-template-columns: 1fr; } .mobile-menu-btn { display: block; } }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manu Forti — Agent Stack Install</title>
+  <meta name="description" content="Done-with-you multi-agent Chief of Staff stack. Install + 90-day keep-alive. Discovery first — price on request.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #05070f;
+      --bg-2: #0a1020;
+      --navy: #0a0e27;
+      --panel: rgba(14, 22, 42, 0.72);
+      --line: rgba(148, 163, 184, 0.14);
+      --text: #e8eef8;
+      --muted: #94a3b8;
+      --cobalt: #3b82f6;
+      --cyan: #22d3ee;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 2.5rem)); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(5, 7, 15, 0.72);
+      border-bottom: 1px solid var(--line);
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+    .logo { font-weight: 700; letter-spacing: -0.03em; text-decoration: none; font-size: 1.15rem; }
+    .logo span {
+      background: linear-gradient(135deg, var(--cobalt), var(--cyan));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.92rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--white); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      text-decoration: none; font-weight: 600; border-radius: 999px;
+      padding: 0.85rem 1.35rem; transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cobalt), var(--cyan));
+      color: #041018; box-shadow: 0 10px 30px rgba(34, 211, 238, 0.18);
+    }
+    .btn-ghost { border: 1px solid rgba(255,255,255,0.16); color: var(--white); }
+    .hero {
+      position: relative; overflow: hidden;
+      padding: 6.5rem 0 5rem;
+    }
+    .hero::before, .hero::after {
+      content: ""; position: absolute; border-radius: 50%; filter: blur(70px); pointer-events: none;
+    }
+    .hero::before { width: 420px; height: 420px; left: -80px; top: 20px; background: rgba(59,130,246,0.22); }
+    .hero::after { width: 380px; height: 380px; right: -60px; top: 80px; background: rgba(34,211,238,0.16); }
+    .kicker {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1px solid var(--line); background: rgba(255,255,255,0.03);
+      color: var(--cyan); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0.4rem 0.75rem; border-radius: 999px; margin-bottom: 1.25rem;
+    }
+    h1 { font-size: clamp(2.3rem, 6vw, 4.4rem); line-height: 1.05; letter-spacing: -0.045em; max-width: 16ch; }
+    .lede { margin-top: 1.4rem; max-width: 40rem; color: var(--muted); font-size: 1.15rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+    .stack-viz {
+      margin-top: 3.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+    }
+    .node {
+      border: 1px solid var(--line); background: var(--panel);
+      border-radius: 18px; padding: 1.15rem 1.2rem;
+    }
+    .node strong { display: block; font-size: 0.95rem; }
+    .node span { color: var(--muted); font-size: 0.88rem; }
+    section { padding: 5rem 0; }
+    .section-label { color: var(--cyan); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.03em; margin: 0.5rem 0 1.6rem; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .card {
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: 20px; padding: 1.4rem;
+    }
+    .card h3 { font-size: 1.05rem; margin-bottom: 0.45rem; }
+    .card p { color: var(--muted); font-size: 0.98rem; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .step { background: var(--bg-2); border: 1px solid var(--line); border-radius: 20px; padding: 1.5rem; }
+    .num {
+      width: 2rem; height: 2rem; display: grid; place-items: center; border-radius: 50%;
+      background: linear-gradient(135deg, var(--cobalt), var(--cyan));
+      color: #041018; font-weight: 800; margin-bottom: 1rem;
+    }
+    .coming {
+      margin-top: 1.5rem; color: var(--muted); font-size: 0.95rem;
+      border-top: 1px solid var(--line); padding-top: 1.2rem;
+    }
+    .cta {
+      text-align: center; border: 1px solid var(--line);
+      background: radial-gradient(circle at top, rgba(59,130,246,0.16), transparent 55%), var(--bg-2);
+      border-radius: 28px; padding: 3.5rem 1.5rem;
+    }
+    .cta p { color: var(--muted); margin: 0.8rem auto 1.6rem; max-width: 36rem; }
+    footer { border-top: 1px solid var(--line); padding: 2rem 0 2.5rem; color: var(--muted); font-size: 0.9rem; }
+    .footer-row { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    footer a { color: #cbd5e1; text-decoration: none; }
+    .menu-btn { display: none; background: none; border: 0; color: white; font-size: 1.4rem; }
+    @media (max-width: 800px) {
+      .stack-viz, .grid, .steps { grid-template-columns: 1fr; }
+      .menu-btn { display: block; }
+      .nav-links {
+        display: none; position: absolute; right: 1.25rem; top: 4rem;
+        background: #0b1222; border: 1px solid var(--line); border-radius: 16px;
+        padding: 1rem; flex-direction: column; min-width: 200px;
+      }
+      .nav-links.open { display: flex; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo">Manu Forti <span>Intelligence</span></a>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-            <ul class="nav-links" id="mobileNav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="supplier-analysis.html">Supplier Analysis</a></li>
-                <li><a href="category-strategy.html">Category Strategy</a></li>
-                <li><a href="media-monitoring.html">Media Monitoring</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="order.html" class="nav-cta">Order Report</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section class="hero">
-        <div class="hero-image-wrap"><img src="hero-v1.png" alt="Manu Forti Intelligence — Get a grip on your Procurement" /></div>
-        <div class="hero-cta-bar">
-            <a href="order.html" class="cta-button">Explore Solutions</a>
-            <a href="#how-it-works" class="cta-button secondary">Learn More</a>
-        </div>
-    </section>
-    <section class="value-prop">
-        <div class="container">
-            <h2>Know your suppliers before you commit.</h2>
-            <p>Professional supplier intelligence delivered in 24 hours. We analyze financial health, operational risk, and ESG performance — so you can negotiate with confidence and avoid costly supplier failures.</p>
-            <ul class="services-list">
-                <li><a href="supplier-analysis.html">Supplier Analysis Reports</a></li>
-                <li><a href="category-strategy.html">Category Strategy</a></li>
-                <li><a href="media-monitoring.html">Supplier Media Monitoring</a></li>
-            </ul>
-        </div>
-    </section>
-    <section class="features" id="features">
-        <div class="container">
-            <div class="section-header"><h2>Why Manu Forti?</h2><p>Built by procurement professionals for procurement professionals</p></div>
-            <div class="feature-grid">
-                <div class="feature-card"><h3>Practitioner-grade Analysis</h3><p>Financial health, operational capability, geopolitical risk, and ESG factors.</p></div>
-                <div class="feature-card"><h3>24-Hour Delivery</h3><p>Professional 9-slide reports delivered within 24 hours.</p></div>
-                <div class="feature-card"><h3>Procurement Expertise</h3><p>80+ years of combined experience in energy, manufacturing, and global supply chains.</p></div>
-            </div>
-        </div>
-    </section>
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-header"><h2>Invest €249. Save Thousands in Risk.</h2></div>
-            <div class="pricing-grid">
-                <div class="pricing-card"><h3>Standard</h3><div class="price">€249<span>/report</span></div><a href="order.html?tier=standard" class="cta-button">Order Now</a></div>
-                <div class="pricing-card featured"><h3>Premium</h3><div class="price">€349<span>/report</span></div><a href="order.html?tier=premium" class="cta-button">Order Now</a></div>
-            </div>
-        </div>
-    </section>
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <div class="section-header"><h2>How It Works</h2></div>
-            <div class="steps">
-                <div class="step"><h3>1. Submit Request</h3><p>Tell us which supplier you need evaluated.</p></div>
-                <div class="step"><h3>2. Intelligence Gathering</h3><p>Our team analyzes financials and risks.</p></div>
-                <div class="step"><h3>3. Expert Review</h3><p>Procurement experts validate recommendations.</p></div>
-                <div class="step"><h3>4. Receive Report</h3><p>Get your report within 24 hours.</p></div>
-            </div>
-        </div>
-    </section>
-    <section class="cta-section">
-        <div class="container">
-            <h2>Ready to evaluate your suppliers?</h2>
-            <p>First report delivered in 24 hours.</p>
-            <a href="order.html" class="cta-button">Order Your Report</a>
-        </div>
-    </section>
-    <section class="features" id="agent-stack" style="background: linear-gradient(135deg, #0a0e27 0%, #1a1f4d 100%); color: white;">
-        <div class="container">
-            <div class="section-header">
-                <h2 style="color: white;">Agent Stack Install</h2>
-                <p style="color: rgba(255,255,255,0.8);">Done-with-you multi-agent ops for founders — install + 90-day keep-alive. Price on request after a short discovery call.</p>
-            </div>
-            <div style="text-align:center;">
-                <a href="mailto:jonathon.milne@manuforti.no?subject=Agent%20Stack%20Install%20discovery" class="cta-button">Request discovery</a>
-                <p style="margin-top:1rem;color:rgba(255,255,255,0.65);font-size:0.9rem;">CoS Starter pack coming under Manu Forti. No fake SaaS pricing.</p>
-            </div>
-        </div>
-    </section>
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="index.html">Supplier Analysis</a>
-                <a href="category-strategy.html">Category Strategy</a>
-                <a href="about.html">About Us</a>
-                <a href="mailto:jonathon.milne@manuforti.no">Contact</a>
-            </div>
-            <p>&copy; 2026 Manu Forti Intelligence. All rights reserved.</p>
-        </div>
-    </footer>
-    <script>
-        function toggleMobileMenu() {
-            document.getElementById('mobileNav').classList.toggle('active');
-            document.querySelector('.mobile-menu-btn').classList.toggle('active');
-        }
-    </script>
+  <header>
+    <nav class="wrap">
+      <a class="logo" href="index.html">Manu <span>Forti</span></a>
+      <button class="menu-btn" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">&#9776;</button>
+      <ul class="nav-links" id="nav">
+        <li><a href="#offer">Offer</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a class="btn btn-primary" href="mailto:jonathon.milne@manuforti.no?subject=Agent%20Stack%20Install%20discovery">Request discovery</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="kicker">Agent Stack Install · 90-day keep-alive</div>
+      <h1>Agent Stack Install for operators who need leverage, not another chatbot.</h1>
+      <p class="lede">Done-with-you multi-agent Chief of Staff stack. Install + 90-day keep-alive. Discovery first — price on request.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="mailto:jonathon.milne@manuforti.no?subject=Agent%20Stack%20Install%20discovery">Request discovery</a>
+        <a class="btn btn-ghost" href="#how">See how it works</a>
+      </div>
+      <div class="stack-viz">
+        <div class="node"><strong>Chief of Staff</strong><span>Priorities, cadence, close-out.</span></div>
+        <div class="node"><strong>Inbox + calendar</strong><span>Triage, briefs, follow-ups.</span></div>
+        <div class="node"><strong>Keep-alive</strong><span>90 days in production, not a demo.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="offer">
+    <div class="wrap">
+      <p class="section-label">What you get</p>
+      <h2>A working multi-agent ops stack — installed with you.</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Done-with-you install</h3>
+          <p>We stand up a Chief of Staff agent stack on your tools. Role cards, routing, and routines — not a chatbot you have to prompt from scratch every morning.</p>
+        </article>
+        <article class="card">
+          <h3>Calendar, inbox, ops loop</h3>
+          <p>Morning digest, overnight triage, and Friday close-out. The stack handles coordination so you stay on the work that actually moves the business.</p>
+        </article>
+        <article class="card">
+          <h3>90-day keep-alive</h3>
+          <p>Install is the start. Ninety days of tuning so the stack stays live, useful, and in rhythm with how you actually operate.</p>
+        </article>
+        <article class="card">
+          <h3>You own the tokens</h3>
+          <p>You keep your Cursor and Grok accounts. Manu Forti does not bill model usage. Discovery first — price on request.</p>
+        </article>
+      </div>
+      <p class="coming">CoS Starter pack coming under Manu Forti.</p>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <p class="section-label">How it works</p>
+      <h2>Discovery first. Then install. Then keep-alive.</h2>
+      <div class="steps">
+        <article class="step">
+          <div class="num">1</div>
+          <h3>Discovery call</h3>
+          <p>Map the load, the tools, and what leverage would look like. If it is not a fit, we say so.</p>
+        </article>
+        <article class="step">
+          <div class="num">2</div>
+          <h3>Install</h3>
+          <p>Build the multi-agent stack with you — roles, connectors, and the weekly operating loop.</p>
+        </article>
+        <article class="step">
+          <div class="num">3</div>
+          <h3>Keep-alive</h3>
+          <p>Ninety days of hands-on tuning so the stack stays in production after the shiny week-one demo.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="cta">
+        <p class="section-label">Next step</p>
+        <h2>If you need leverage, start with a conversation.</h2>
+        <p>Request a discovery call. Price on request. No fake SaaS tiers. No token billing on this site.</p>
+        <a class="btn btn-primary" href="mailto:jonathon.milne@manuforti.no?subject=Agent%20Stack%20Install%20discovery">Request discovery</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-row">
+      <p>© 2026 Manu Forti. Oslo.</p>
+      <p>
+        <a href="about.html">About</a> ·
+        <a href="mailto:jonathon.milne@manuforti.no">jonathon.milne@manuforti.no</a>
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
