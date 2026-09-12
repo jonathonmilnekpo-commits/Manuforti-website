@@ -1,1 +1,142 @@
-PLACEHOLDER_LOAD_FROM_/workspace/MCP_ARGS_MF_INDEX.json
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manu Forti Intelligence — Supplier Analysis Reports in 24 Hours</title>
+    <meta name="description" content="Professional supplier intelligence delivered in 24 hours. Financial health, risk assessment, and ESG scoring for procurement teams. €249 per report.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --navy: #0a0e27; --navy-light: #1a1f4d; --cobalt: #3B82F6; --cyan: #06B6D4; --white: #FFFFFF; --gray-100: #F8FAFC; --gray-200: #E2E8F0; --gray-400: #94A3B8; --gray-600: #475569; --gray-800: #1E293B; --green: #10B981; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; color: var(--gray-800); background: var(--white); }
+        header { background: rgba(10, 14, 39, 0.95); backdrop-filter: blur(10px); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: -0.02em; }
+        .logo span { background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; z-index: 1001; }
+        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: white; margin: 5px 0; transition: 0.3s; }
+        .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+        .nav-cta { background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%); color: white !important; padding: 0.6rem 1.4rem; border-radius: 6px; font-weight: 600 !important; }
+        .hero { padding-top: 72px; background: #0a0e27; }
+        .hero-image-wrap img { width: 100%; height: auto; display: block; }
+        .hero-cta-bar { background: #0a0e27; padding: 2.5rem 2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+        .cta-button { display: inline-block; background: linear-gradient(135deg, var(--cobalt) 0%, var(--cyan) 100%); color: var(--white); padding: 1rem 2.5rem; font-weight: 600; text-decoration: none; border-radius: 8px; }
+        .cta-button.secondary { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.6); }
+        .value-prop { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e3a8a 100%); padding: 6rem 0; color: var(--white); }
+        .value-prop h2 { font-size: 2.75rem; font-weight: 600; margin-bottom: 2rem; }
+        .value-prop p { font-size: 1.35rem; color: rgba(255,255,255,0.85); margin-bottom: 2rem; }
+        .services-list { list-style: none; }
+        .services-list li { font-size: 1.1rem; padding: 0.5rem 0; }
+        .services-list li a { color: rgba(255,255,255,0.9); text-decoration: none; }
+        .features { padding: 6rem 0; background: var(--gray-100); }
+        .section-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+        .section-header h2 { font-size: 2.5rem; color: var(--navy); margin-bottom: 1rem; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .feature-card { background: var(--white); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--gray-200); }
+        .feature-card h3 { color: var(--navy); font-size: 1.25rem; margin-bottom: 0.75rem; }
+        .pricing { padding: 6rem 0; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .pricing-card { background: var(--gray-100); padding: 2.5rem; border-radius: 12px; }
+        .pricing-card.featured { background: var(--navy); color: var(--white); }
+        .price { font-size: 3rem; font-weight: 800; color: var(--navy); }
+        .pricing-card.featured .price { color: var(--white); }
+        .how-it-works { padding: 6rem 0; background: var(--gray-100); }
+        .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+        .cta-section { padding: 6rem 0; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: var(--white); text-align: center; }
+        footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 3rem 0; text-align: center; }
+        .footer-links a { color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 1rem; }
+        @media (max-width: 768px) { .steps { grid-template-columns: 1fr; } .mobile-menu-btn { display: block; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Manu Forti <span>Intelligence</span></a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            <ul class="nav-links" id="mobileNav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="supplier-analysis.html">Supplier Analysis</a></li>
+                <li><a href="category-strategy.html">Category Strategy</a></li>
+                <li><a href="media-monitoring.html">Media Monitoring</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="order.html" class="nav-cta">Order Report</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="hero-image-wrap"><img src="hero-v1.png" alt="Manu Forti Intelligence — Get a grip on your Procurement" /></div>
+        <div class="hero-cta-bar">
+            <a href="order.html" class="cta-button">Explore Solutions</a>
+            <a href="#how-it-works" class="cta-button secondary">Learn More</a>
+        </div>
+    </section>
+    <section class="value-prop">
+        <div class="container">
+            <h2>Know your suppliers before you commit.</h2>
+            <p>Professional supplier intelligence delivered in 24 hours. We analyze financial health, operational risk, and ESG performance — so you can negotiate with confidence and avoid costly supplier failures.</p>
+            <ul class="services-list">
+                <li><a href="supplier-analysis.html">Supplier Analysis Reports</a></li>
+                <li><a href="category-strategy.html">Category Strategy</a></li>
+                <li><a href="media-monitoring.html">Supplier Media Monitoring</a></li>
+            </ul>
+        </div>
+    </section>
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header"><h2>Why Manu Forti?</h2><p>Built by procurement professionals for procurement professionals</p></div>
+            <div class="feature-grid">
+                <div class="feature-card"><h3>Practitioner-grade Analysis</h3><p>Financial health, operational capability, geopolitical risk, and ESG factors.</p></div>
+                <div class="feature-card"><h3>24-Hour Delivery</h3><p>Professional 9-slide reports delivered within 24 hours.</p></div>
+                <div class="feature-card"><h3>Procurement Expertise</h3><p>80+ years of combined experience in energy, manufacturing, and global supply chains.</p></div>
+            </div>
+        </div>
+    </section>
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header"><h2>Invest €249. Save Thousands in Risk.</h2></div>
+            <div class="pricing-grid">
+                <div class="pricing-card"><h3>Standard</h3><div class="price">€249<span>/report</span></div><a href="order.html?tier=standard" class="cta-button">Order Now</a></div>
+                <div class="pricing-card featured"><h3>Premium</h3><div class="price">€349<span>/report</span></div><a href="order.html?tier=premium" class="cta-button">Order Now</a></div>
+            </div>
+        </div>
+    </section>
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header"><h2>How It Works</h2></div>
+            <div class="steps">
+                <div class="step"><h3>1. Submit Request</h3><p>Tell us which supplier you need evaluated.</p></div>
+                <div class="step"><h3>2. Intelligence Gathering</h3><p>Our team analyzes financials and risks.</p></div>
+                <div class="step"><h3>3. Expert Review</h3><p>Procurement experts validate recommendations.</p></div>
+                <div class="step"><h3>4. Receive Report</h3><p>Get your report within 24 hours.</p></div>
+            </div>
+        </div>
+    </section>
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to evaluate your suppliers?</h2>
+            <p>First report delivered in 24 hours.</p>
+            <a href="order.html" class="cta-button">Order Your Report</a>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Supplier Analysis</a>
+                <a href="category-strategy.html">Category Strategy</a>
+                <a href="about.html">About Us</a>
+                <a href="mailto:manuforti.as@gmail.com">Contact</a>
+            </div>
+            <p>&copy; 2026 Manu Forti Intelligence. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileNav').classList.toggle('active');
+            document.querySelector('.mobile-menu-btn').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
