@@ -93,15 +93,17 @@
 
     .logo {
       display: inline-flex;
-      align-items: center;
-      line-height: 0;
+      align-items: baseline;
+      gap: 0.28em;
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-decoration: none;
     }
 
-    .logo svg {
-      display: block;
-      height: 1.35rem;
-      width: auto;
-    }
+    .logo-manu { color: #f3f5fa; }
+    .logo-forti { color: var(--cobalt); }
 
     .btn {
       display: inline-flex;
@@ -282,12 +284,7 @@
 
   <header>
     <div class="header-inner">
-      <a class="logo" href="/" aria-label="Manu Forti">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 48" height="22" role="img" aria-hidden="true">
-          <text x="0" y="34" font-family="Inter, system-ui, sans-serif" font-size="32" font-weight="600" letter-spacing="-0.03em" fill="#F3F5FA">Manu</text>
-          <text x="112" y="34" font-family="Inter, system-ui, sans-serif" font-size="32" font-weight="600" letter-spacing="-0.03em" fill="#4C7BF5">Forti</text>
-        </svg>
-      </a>
+      <a class="logo" href="/" aria-label="Manu Forti"><span class="logo-manu">Manu</span><span class="logo-forti">Forti</span></a>
       <a class="btn btn-primary btn-header" href="mailto:jonathon.milne@manuforti.no?subject=Agent%20Stack%20Install%20discovery">Book discovery</a>
     </div>
   </header>
